@@ -6,7 +6,6 @@ export const StatusContainer = styled.div`
   align-items: center;
   width: fit-content;
   padding: 0 5px;
-  border-radius: 5px;
   height: 24px;
   font-size: 11px;
   ${({ children }) => {
@@ -14,12 +13,17 @@ export const StatusContainer = styled.div`
       case 'sale':
         return css`
           color: white;
-          background-color: red;
+          background-color: rgb(254, 83, 86);
         `
       case 'best':
         return css`
-          color: red;
-          border: 1px solid black;
+          color: rgb(254, 83, 86);
+          border: 1px solid rgb(204, 204, 204);
+        `
+      case 'soldout':
+        return css`
+          color: white;
+          background-color: rgb(102, 102, 102);
         `
     }
   }}
