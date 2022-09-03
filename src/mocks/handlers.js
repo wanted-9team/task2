@@ -1,0 +1,31 @@
+import { rest } from 'msw'
+import data from './data'
+
+export const handlers = [
+  rest.get(`/productlist`, (req, res, ctx) => {
+    const page = req.url.searchParams.get('page')
+    const result = []
+    for (let i = 0; i < data.length; i += 10) {
+      result.push(data.slice(i, i + 10))
+    }
+    const returnPageData = result[Number(page) - 1]
+    return res(ctx.status(200), ctx.json(returnPageData))
+  }),
+
+  rest.post('/createproduct', (req, res, ctx) => {
+    const body = req.body
+
+    data.push({ ...body, id: data.length + 1 })
+    return res(ctx.status(200), ctx.json({ message: '등록되었습니다.' }))
+  }),
+
+  rest.delete('/deleteproduct', (req, res, ctx) => {
+    const id = req.url.searchParams.get('id')
+    data.splice(
+      data.findIndex(item => item.id === Number(id)),
+      1,
+    )
+
+    return res(ctx.status(200))
+  }),
+]
