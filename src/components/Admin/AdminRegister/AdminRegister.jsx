@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import * as S from './AdminRegister.style'
 import InputField from './AdminInputField'
 import AdminOption from './AdminOption'
-
-const statusData = [
+import ImageUploadBox from './ImageUploadBox'
+const statusDataArr = [
   { id: 1, type: 'SALE' },
   { id: 2, type: 'BEST' },
   { id: 3, type: 'MD' },
@@ -18,28 +18,45 @@ const initialDataType = {
   imageUrl: [],
   quantity: 0,
   price: 0,
-  status: [],
   sale: 0,
-  select: [{ option: '', price: 0 }],
   description: [],
   origin: '',
   shipping: { option: '', price: 0, info: '' },
   visible: true,
 }
+
 const AdminRegister = () => {
   const [productData, setProductData] = useState(initialDataType)
   const [createOptionDiv, setCreateOptionDiv] = useState([])
+  const [statusData, setStatusData] = useState([])
+  const [shippingFreeCheck, setShippingFreeCheck] = useState(false)
+  const [optionData, setOptionData] = useState({ option: '', price: '' })
+
   useEffect(() => {
     console.log(productData)
   }, [productData])
+  useEffect(() => {
+    console.log(optionData)
+  }, [optionData])
+  useEffect(() => {
+    console.log(statusData)
+  }, [statusData])
+  useEffect(() => {
+    console.log(shippingFreeCheck)
+  }, [shippingFreeCheck])
 
-  const handleAddOption = () => {
+  const handleAddOptionClick = useCallback(() => {
     let countArr = [...createOptionDiv]
     let counter = countArr.slice(-1)[0]
     counter += 1
     countArr.push(counter)
     setCreateOptionDiv(countArr)
+  }, [createOptionDiv])
+
+  const handleShippingCheck = () => {
+    setShippingFreeCheck(prev => !prev)
   }
+
   return (
     <S.RegisterContaiDiv>
       <S.BoxDiv>
@@ -71,7 +88,7 @@ const AdminRegister = () => {
 
         <S.Label>
           <S.LabelText> 상품 옵션</S.LabelText>
-          <S.OptionButton onClick={handleAddOption}>옵션 추가</S.OptionButton>
+          <S.OptionButton onClick={handleAddOptionClick}>옵션 추가</S.OptionButton>
         </S.Label>
         {createOptionDiv &&
           createOptionDiv.map((div, idx) => (
@@ -79,14 +96,12 @@ const AdminRegister = () => {
               key={idx}
               setProductData={setProductData}
               createOptionDiv={createOptionDiv}
+              setOptionData={setOptionData}
             />
           ))}
       </S.BoxDiv>
       <S.BoxDiv>
-        <S.Label>
-          <S.LabelText>상품 이미지</S.LabelText>
-          <S.OptionButton>파일 선택</S.OptionButton>
-        </S.Label>
+        <ImageUploadBox />
         <InputField setProductData={setProductData} label="원산지" id="origin" type="text" />
         <InputField
           setProductData={setProductData}
@@ -100,14 +115,18 @@ const AdminRegister = () => {
             label="배송비"
             id="shippingPrice"
             type="number"
+            shippingFreeCheck={shippingFreeCheck}
           />
-          <InputField
-            setProductData={setProductData}
-            label="무료"
-            id="shippingPriceCheck"
-            type="checkbox"
-            attr="shippingFree"
-          />
+          <S.Label attr="shippingFree">
+            <S.LabelText>무료</S.LabelText>
+            <S.CheckInput
+              onChange={handleShippingCheck}
+              label="무료"
+              id="shippingPriceCheck"
+              type="checkbox"
+              attr="shippingFree"
+            />
+          </S.Label>
         </S.ShippingBoxDiv>
         <InputField
           setProductData={setProductData}
@@ -117,9 +136,10 @@ const AdminRegister = () => {
         />
         <S.LabelText>상태</S.LabelText>
         <S.StatusBox>
-          {statusData.map(sts => (
+          {statusDataArr.map(sts => (
             <InputField
-              setProductData={setProductData}
+              setStatusData={setStatusData}
+              statusData={statusData}
               label={sts.type}
               id={sts.type}
               key={sts.id}

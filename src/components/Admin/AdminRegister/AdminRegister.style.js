@@ -7,12 +7,24 @@ export const RegisterContaiDiv = styled.div`
   margin: 0 auto;
   padding: 73px 100px;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    width: 708px;
+    padding: 53px 20px;
+  }
+  @media (max-width: 414px) {
+    width: 374px;
+    padding: 53px 20px;
+    flex-direction: column;
+  }
 `
 
 export const BoxDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 452px;
+  @media (max-width: 768px) {
+    width: 329px;
+  }
 `
 export const HalfBox = styled.div`
   display: flex;
@@ -108,6 +120,7 @@ export const OptionBoxDiv = styled.div`
   width: 100%;
   background-color: #fff;
   padding: 18px 15px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   border-radius: 4px;
@@ -115,4 +128,48 @@ export const OptionBoxDiv = styled.div`
 export const ShippingBoxDiv = styled.div`
   display: flex;
   align-items: center;
+`
+export const PreviewWapper = styled.div`
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid #b8b8b8;
+`
+export const ImgBoxWrapper = styled.div`
+  background-color: #a1a1a1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  border-radius: 4px;
+  div {
+    padding: 10px 0;
+  }
+  span {
+    font-size: 0.8rem;
+  }
+  input {
+    display: none;
+  }
+`
+export const PreviewContainer = styled.div`
+  display: flex;
+  height: auto;
+`
+
+export const ImagePreviewWrapper = styled.div`
+  margin-right: 5px;
+  position: relative;
+  img {
+    max-width: 70px;
+    height: 70px;
+    @media (max-width: 768px) {
+      max-width: 55px;
+    }
+  }
+  .icon_container {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+  }
 `

@@ -2,7 +2,7 @@ import React from 'react'
 import * as S from './AdminRegister.style'
 import { AiOutlineClose } from 'react-icons/ai'
 import InputField from './AdminInputField'
-const AdminOption = ({ setProductData, createOptionDiv }) => {
+const AdminOption = ({ setOptionData }) => {
   return (
     <S.OptionBoxDiv>
       <S.OptionHeader>
@@ -15,14 +15,14 @@ const AdminOption = ({ setProductData, createOptionDiv }) => {
           id="optionName"
           type="text"
           attr="option"
-          setProductData={setProductData}
+          setOptionData={setOptionData}
         />
         <InputField
           label="옵션 가격"
           id="optionPrice"
           type="number"
           attr="option"
-          setProductData={setProductData}
+          setOptionData={setOptionData}
         />
       </S.HalfBox>
     </S.OptionBoxDiv>
