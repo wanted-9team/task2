@@ -23,6 +23,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     cursor: pointer;
   }
+  ol {
+    list-style: none;
+  }
 `
 
 export default GlobalStyle
