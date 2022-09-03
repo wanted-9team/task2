@@ -9,17 +9,21 @@ export const handlers = [
       result.push(data.slice(i, i + 10))
     }
     const returnPageData = result[Number(page) - 1]
+
     return res(
       ctx.status(200),
       ctx.json({ list: returnPageData, totalPage: result.length, totalResults: data.length }),
     )
+
   }),
 
   rest.post('/createproduct', (req, res, ctx) => {
     const body = req.body
+
     if (!body) {
       return res(ctx.status(400), ctx.json({ message: 'No-Data' }))
     }
+
     data.push({ ...body, id: data.length + 1 })
     return res(ctx.status(200), ctx.json({ message: '등록되었습니다.' }))
   }),
@@ -30,6 +34,8 @@ export const handlers = [
       data.findIndex(item => item.id === Number(id)),
       1,
     )
+
     return res(ctx.status(204))
+
   }),
 ]
