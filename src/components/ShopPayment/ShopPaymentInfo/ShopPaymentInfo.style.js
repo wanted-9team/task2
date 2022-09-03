@@ -36,16 +36,20 @@ export const PaymentOrderItemImageContainer = styled.div`
 `
 
 export const PaymentOrderItemInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-right: 20px;
+  padding-right: 48px;
+  line-height: 21px;
 `
 
 export const PaymentOrderItemName = styled.div`
   font-size: 20px;
 `
 
-export const PaymentOrderOptionsAndPrices = styled.div`
+export const PaymentOrderOptions = styled.div`
+  font-size: 16px;
+  margin: 15px 0;
+`
+
+export const PaymentOrderQuantity = styled.div`
   font-size: 16px;
   margin: 15px 0;
 `
@@ -56,7 +60,28 @@ export const PaymentOrderItemPrice = styled.div`
 `
 
 // Customer Info
-export const CustomerInfo = styled.div``
+export const CustomerInfoHeader = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+`
+export const CustomerInfo = styled.div`
+  width: 80%;
+`
+
+export const CustomerInfoFieldset = styled.fieldset`
+  position: relative;
+  border: none;
+`
+
+export const CustomerInfoLabel = styled.label``
+
+export const CustomerInfoInput = styled.input`
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  margin-bottom: 15px;
+`
 
 // Shipping Information
 export const ShippingInfo = styled.div``
