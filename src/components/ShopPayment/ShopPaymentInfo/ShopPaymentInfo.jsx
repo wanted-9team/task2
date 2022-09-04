@@ -16,20 +16,40 @@ const ShopPaymentInfo = ({ item, orderInfo, setOrderInfo }) => {
     const { value, name } = e.target
     setOrderInfo({ ...orderInfo, [name]: value })
   }
+
+  const handleModifyBtn = type => {
+    let N = orderInfo.boughtNumber
+    type === 'plus' ? N++ : N--
+    setOrderInfo({ ...orderInfo, boughtNumber: N })
+  }
+
   return (
     <S.PaymentInfoContainerWrapper>
       <S.PaymentOrderItemHeader>주문상품 정보</S.PaymentOrderItemHeader>
-      <S.PaymentOrderItemInfoContainer>
-        <S.PaymentOrderItemImageContainer>
+      <S.PaymentOrderItemInfoBox>
+        <S.PaymentOrderItemImageBox>
           <img src={item?.imageUrl} alt={item?.name} />
-        </S.PaymentOrderItemImageContainer>
+        </S.PaymentOrderItemImageBox>
         <S.PaymentOrderItemInfo>
-          <S.PaymentOrderItemName>{item?.name}</S.PaymentOrderItemName>
-          <S.PaymentOrderOptions>{item?.select.option}</S.PaymentOrderOptions>
-          <S.PaymentOrderQuantity>수량</S.PaymentOrderQuantity>
-          <S.PaymentOrderItemPrice>{item?.price}</S.PaymentOrderItemPrice>
+          <S.PaymentOrderItemName>{item?.name}수박 </S.PaymentOrderItemName>
+          <S.PaymentOrderOptions>옵션: {item?.select?.option}1kg</S.PaymentOrderOptions>
         </S.PaymentOrderItemInfo>
-      </S.PaymentOrderItemInfoContainer>
+        <S.PaymentOrderPriceInfo>
+          <S.PaymentOrderItemSalePrice>{`${getFormattedPrice(
+            27000,
+          )}원`}</S.PaymentOrderItemSalePrice>
+          <S.PaymentOrderItemPrice>{`${getFormattedPrice(30000)} 원`}</S.PaymentOrderItemPrice>
+          <S.PaymentOrderQuantity>
+            {orderInfo.boughtNumber === 1 ? (
+              <S.MinusNoClick />
+            ) : (
+              <S.Minus onClick={() => handleModifyBtn('minus')} />
+            )}
+            <div>{orderInfo.boughtNumber}</div>
+            <S.Plus onClick={() => handleModifyBtn('plus')} />
+          </S.PaymentOrderQuantity>
+        </S.PaymentOrderPriceInfo>
+      </S.PaymentOrderItemInfoBox>
       <S.CustomerInfoHeader>주문 회원 정보</S.CustomerInfoHeader>
       <S.CustomerInfo>
         <S.CustomerInfoFieldset>
@@ -63,7 +83,7 @@ const ShopPaymentInfo = ({ item, orderInfo, setOrderInfo }) => {
               type="text"
               readonly
               name="address"
-              placeholder="주소 1"
+              placeholder="메인 주소"
               value={`${orderInfo?.address}`}
             ></S.ShippingDeliveryRoadAddress>
             <S.ShippingDeliveryDetailAddress
@@ -76,7 +96,7 @@ const ShopPaymentInfo = ({ item, orderInfo, setOrderInfo }) => {
         </S.ShippingDeliveryInfoEachContainer>
         <S.ShippingDeliveryInfoEachContainer>
           <S.ShippingDeliveryInfoLabel>배송 메모</S.ShippingDeliveryInfoLabel>
-          <S.ShippingDeliveryInfoSelect>
+          <S.ShippingDeliveryInfoSelect name="deliveryMemo" onChange={onChangeHandler}>
             <S.ShippingDeliveryInfoOption value="">
               배송 시 요청사항을 선택해주세요.
             </S.ShippingDeliveryInfoOption>

@@ -29,22 +29,25 @@ const ShopPayment = ({ item }) => {
     address: '',
     detailAddress: '',
     fullAddress: '',
+    quantity: '',
   })
   useEffect(() => {
     const newOrderInfo = {
       ...orderInfo,
-      productName: item.name,
-      price: item.price,
-      select: item.select,
-      imageUrl: item.imageUrl,
-      shipping: item.shipping,
-      origin: item.origin,
-      id: item.id,
-      sale: item.sale,
+      productName: item?.name,
+      price: item?.price,
+      select: item?.select,
+      imageUrl: item?.imageUrl,
+      shipping: item?.shipping,
+      origin: item?.origin,
+      id: item?.id,
+      sale: item?.sale,
       orderNumber: newOrderNumber,
+      quantity: item?.quantity,
     }
     setOrderInfo(newOrderInfo)
   }, [])
+
   return (
     <S.PaymentContainerWrapper>
       <S.PaymentContainerHeader>주문서</S.PaymentContainerHeader>
