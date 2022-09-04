@@ -9,6 +9,7 @@ const ShippingInputField = ({
   setShippingData,
   shippingInputRef,
   requiredText,
+  requiredInput,
 }) => {
   const handleChangeShipping = useCallback(
     ({ target }) => {
@@ -36,6 +37,7 @@ const ShippingInputField = ({
         min="0"
         step="100"
         ref={shippingInputRef}
+        requiredInput={requiredInput}
       />
     </S.Label>
   )
