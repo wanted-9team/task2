@@ -21,6 +21,8 @@ export const StatusContainer = styled.div`
           color: red;
           border: 1px solid black;
         `
+      default:
+        return css``
     }
   }}
 `
