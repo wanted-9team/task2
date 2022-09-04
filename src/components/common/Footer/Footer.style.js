@@ -9,13 +9,14 @@ export const Footer = styled.footer`
   background-color: #eee;
 `
 export const FooterItemsWrap = styled.div`
+  padding: 40px 20px;
   display: flex;
   justify-content: space-between;
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
 `
 
 export const FooterItem = styled.section`
-  margin: 40px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

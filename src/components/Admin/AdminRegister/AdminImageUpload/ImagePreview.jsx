@@ -1,5 +1,5 @@
 import React from 'react'
-import * as S from './AdminRegister.style'
+import * as S from '../AdminRegister.style'
 import { AiFillCloseCircle } from 'react-icons/ai'
 const ImagePreview = ({ image, deleteFunc }) => {
   return (

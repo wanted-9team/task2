@@ -1,9 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
 import StyleVariables from '../../../styles/StyleVariables'
 
 export const AdminShopContainer = styled.table`
   width: 1200px;
-  margin: auto;
+  margin: 0 auto 50px;
   border: 1px solid black;
   border-bottom: none;
 `
@@ -80,3 +81,25 @@ export const AdminProductSale = styled(AdminProductSaleColumn)``
 export const AdminProductStatus = styled(AdminProductStatusColumn)``
 
 export const AdminButton = styled(AdminButtonColumn)``
+
+export const AdminPageButtonContainer = styled.div`
+  ${StyleVariables.flex()}
+  margin-bottom: 50px;
+`
+
+export const AdminListPageButton = styled.button`
+  font-size: 20px;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #4a9536;
+  border-radius: 5px;
+  color: #4a9536;
+  ${({ active }) => {
+    if (active) {
+      return css`
+        color: white;
+        background-color: #4a9536;
+      `
+    }
+  }}
+`

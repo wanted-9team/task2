@@ -15,7 +15,10 @@ const AdminShopItem = ({
     setModifyItemId(itemId)
   }
 
-  const completeHandler = () => {}
+  const completeHandler = () => {
+    // 변경된 데이터를 서버로 전송하는 함수
+    setModifyItemId('')
+  }
 
   const deleteHandler = itemId => {
     if (window.confirm('해당 아이템을 삭제하시겠습니까?')) {
