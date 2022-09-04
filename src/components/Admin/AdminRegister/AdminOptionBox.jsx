@@ -19,7 +19,7 @@ const AdminOptionBox = ({ idx, setOptionComponent, OptionComponent }) => {
 
   const handleDeleteOption = useCallback(
     optionIdx => {
-      setOptionComponent(prev => prev.filter((item, idx) => idx !== optionIdx))
+      setOptionComponent(prev => prev.filter((item, index) => index !== optionIdx))
     },
     [setOptionComponent],
   )

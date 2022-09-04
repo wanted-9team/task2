@@ -8,6 +8,7 @@ const ShippingInputField = ({
   shippingFreeCheck,
   setShippingData,
   shippingInputRef,
+  requiredText,
 }) => {
   const handleChange = useCallback(
     ({ target }) => {
@@ -24,7 +25,9 @@ const ShippingInputField = ({
   )
   return (
     <S.Label htmlFor={id} attr={attr}>
-      <S.LabelText>{label}</S.LabelText>
+      <S.LabelText>
+        {label} <S.LabelRequiredText>{requiredText}</S.LabelRequiredText>
+      </S.LabelText>
       <S.TextInput
         id={id}
         type={type}
