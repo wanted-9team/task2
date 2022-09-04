@@ -107,6 +107,7 @@ export const CheckLabel = styled.label`
     font-weight: 400;
   }
 `
+
 export const CheckInput = styled.input``
 
 export const OptionButton = styled.button`
