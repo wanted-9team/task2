@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import * as S from './Headers.style'
 
 const Headers = () => {
+  useEffect(() => {
+    const headerElement = document.querySelector('header')
+    let prevScrollTop = 0
+
+    document.addEventListener('scroll', () => {
+      let nextScroll = window.pageYOffset || 0
+
+      if (nextScroll > prevScrollTop) {
+        headerElement.style.top = '-90px'
+      } else if (nextScroll < prevScrollTop || nextScroll === 0) {
+        headerElement.style.top = '0'
+      }
+
+      prevScrollTop = nextScroll
+    })
+  }, [])
+
   return (
     <S.Header>
       <S.NavWrap>
