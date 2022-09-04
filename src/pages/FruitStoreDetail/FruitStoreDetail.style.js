@@ -40,6 +40,7 @@ export const ThumbnailWrapper = styled.div`
   width: 70px;
   height: 70px;
   overflow: hidden;
+  margin-top: 1em;
 `
 
 export const Thumbnail = styled.img`
@@ -78,6 +79,8 @@ export const Status = styled.div`
 export const StatusOption = styled.span`
   margin-right: 5px;
   border: 1px solid #fe5356;
+  background-color: #fe5356;
+  color: white;
   padding: 2px 8px;
   font-size: 0.7rem;
 `
@@ -129,6 +132,7 @@ export const ShippingOption = styled.option``
 
 export const OptionChoice = styled.div`
   margin-top: 2em;
+  position: relative;
 `
 
 export const OptionChoiceText = styled.p`
@@ -139,13 +143,123 @@ export const OptionChoiceText = styled.p`
 
 export const SelectBtn = styled.button``
 
-export const Select = styled.select`
+export const ItemOptionSelect = styled.button`
   height: 40px;
   border: 1px solid #ddd;
   width: 100%;
+  text-align: left;
+  padding: 0 10px;
 `
 
-export const Option = styled.option``
+export const ItemOptionLists = styled.div`
+  border: 1px solid #ddd;
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  top: 63px;
+  left: 0;
+  z-index: 999;
+  cursor: pointer;
+
+  & div:last-chlid {
+    border-bottom: none;
+  }
+`
+
+export const ItemOptionList = styled.div`
+  padding: 15px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #ddd;
+`
+
+export const ItemOptionPrice = styled.p`
+  font-weight: bold;
+  margin-top: 0.5em;
+`
+
+export const SelectList = styled.div`
+  margin-top: 2em;
+`
+
+export const SelectOption = styled.div`
+  background-color: #f5f5f5;
+  margin-bottom: 10px;
+`
+
+export const SelectOptionName = styled.p`
+  border-bottom: 1px solid #e5e5e5;
+  padding: 20px 15px;
+  position: relative;
+
+  & svg {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: #777;
+  }
+`
+
+export const SelectOptionBtm = styled.div`
+  position: relative;
+  padding: 20px 15px;
+`
+
+export const SelectQuantity = styled.div`
+  border: 1px solid #ccc;
+  display: inline-block;
+
+  & input[type='number']::-webkit-outer-spin-button,
+  & input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  & button {
+    height: 30px;
+    width: 30px;
+    background-color: white;
+  }
+`
+
+export const BtnMinus = styled.button`
+  border-right: 1px solid #ccc;
+`
+
+export const SelectQuantityInput = styled.input`
+  height: 30px;
+  width: 50px;
+  border: none;
+  text-align: center;
+`
+
+export const BtnPlus = styled.button`
+  border-left: 1px solid #ccc;
+`
+
+export const SelectOptionPrice = styled.span`
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+`
+
+export const TotalQuantity = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 2em 0 1em 0;
+  color: #777;
+  align-items: center;
+`
+
+export const TotalPrice = styled.span`
+  text-align: right;
+  color: black;
+  font-weight: bold;
+  font-size: 1.3rem;
+`
 
 export const TextBtmWrapper = styled.div`
   margin-top: 2em;
