@@ -7,41 +7,25 @@ const InputField = ({
   type,
   attr,
   setProductData,
-  setOptionData,
-  setStatusData,
-  statusData,
   shippingFreeCheck,
+  setShippingData,
   max,
   min,
 }) => {
   const handleChange = useCallback(
     ({ target }) => {
       const { id, value } = target
-
-      if (id === 'optionName') {
-        setOptionData(prev => ({ ...prev, option: value }))
-      } else if (id === 'optionPrice') {
-        setOptionData(prev => ({ ...prev, price: value }))
-      } else if (
-        id === 'SALE' ||
-        id === 'BEST' ||
-        id === 'MD' ||
-        id === 'SOLDOUT' ||
-        id === 'NEW' ||
-        id === '무료배송' ||
-        id === '특가' ||
-        id === '판매대기'
-      ) {
-        if (statusData.includes(id)) {
-          setStatusData(prev => prev.filter(item => item !== id))
-        } else {
-          setStatusData(prev => [...prev, id])
-        }
+      if (id === 'shippingOption') {
+        setShippingData(prev => ({ ...prev, option: value }))
+      } else if (id === 'shippingPrice') {
+        setShippingData(prev => ({ ...prev, price: Number(value) }))
+      } else if (id === 'shippingInfo') {
+        setShippingData(prev => ({ ...prev, info: value }))
       } else {
         setProductData(prev => ({ ...prev, [id]: value }))
       }
     },
-    [setProductData, setStatusData, statusData, setOptionData],
+    [setProductData, setShippingData],
   )
 
   return (

@@ -38,22 +38,13 @@ export const Label = styled.label`
     switch (attr) {
       case 'half':
         return css`
-          width: 215px;
-        `
-      case 'option':
-        return css`
-          width: 200px;
-        `
-      case 'checkbox':
-        return css`
-          flex-direction: row-reverse;
-          width: 100px;
-          align-items: center;
-          justify-content: flex-end;
-          h3 {
-            font-weight: 400;
+          flex: 1;
+          margin-right: 10px;
+          &:last-child {
+            margin-right: 0;
           }
         `
+
       case 'shippingFree':
         return css`
           flex-direction: row-reverse;
@@ -101,6 +92,18 @@ export const StatusBox = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+`
+export const CheckLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  flex-direction: row-reverse;
+  width: 100px;
+  align-items: center;
+  justify-content: flex-end;
+  h3 {
+    font-weight: 400;
+  }
 `
 export const CheckInput = styled.input``
 

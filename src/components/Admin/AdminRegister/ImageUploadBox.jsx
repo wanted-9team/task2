@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import ImagePreview from './ImagePreview'
 import * as S from './AdminRegister.style'
 import { BsUpload } from 'react-icons/bs'
-const ImageUploadBox = ({ max = 5 }) => {
-  const [uploadedImages, setUploadedImages] = useState([])
+const ImageUploadBox = ({ max = 5, setUploadedImages, uploadedImages }) => {
   const [previewImages, setPreviewImages] = useState([])
   const uploadBoxRef = useRef()
   const inputRef = useRef()
