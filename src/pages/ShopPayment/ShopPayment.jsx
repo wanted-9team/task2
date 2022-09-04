@@ -24,6 +24,9 @@ const ShopPayment = ({ item }) => {
     origin: '',
     id: 0,
     sale: 0,
+    address: '',
+    detailAddress: '',
+    fullAddress: '',
   })
   return (
     <S.PaymentContainerWrapper>

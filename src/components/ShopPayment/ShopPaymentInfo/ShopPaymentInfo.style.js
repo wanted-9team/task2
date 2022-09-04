@@ -95,6 +95,18 @@ export const ShippingDeliveryInfoInput = styled.input`
   margin-bottom: 5px;
 `
 
+export const ShippingDeliveryHeaderBox = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export const ShippingDeliveryHeader = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+`
+
 export const ShippingDeliveryInfoInputBox = styled.div``
 
 export const ShippingDeliveryAddressSearchInput = styled.input`
@@ -103,7 +115,7 @@ export const ShippingDeliveryAddressSearchInput = styled.input`
   height: 40px;
 `
 
-export const ShippingDeliveryAddressSearchBtn = styled.input`
+export const ShippingDeliveryAddressSearchBtn = styled.button`
   width: 20%;
   height: 40px;
   outline: none;
