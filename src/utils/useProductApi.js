@@ -6,7 +6,7 @@ const useProductApi = () => {
   }
 
   const deleteProducts = async id => {
-    return await axios.delete('/deleteproduct'), { params: { id } }
+    return await axios.delete('/deleteproduct', { params: { id } })
   }
 
   return { getProducts, deleteProducts }
