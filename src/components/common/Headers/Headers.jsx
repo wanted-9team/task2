@@ -12,10 +12,8 @@ const Headers = () => {
           />
         </S.LogoLink>
         <S.Nav>
-          <S.NavLink to="/fruit_store" marginRight="14px" fontWeight="700">
-            스토어
-          </S.NavLink>
-          <S.NavLink to="/admin_shop">관리자</S.NavLink>
+          <S.StoreLink to="/fruit_store">스토어</S.StoreLink>
+          <S.AdminLink to="/admin_shop">관리자</S.AdminLink>
         </S.Nav>
       </S.NavWrap>
     </S.Header>

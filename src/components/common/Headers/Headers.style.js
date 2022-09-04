@@ -36,13 +36,23 @@ export const Nav = styled.nav`
   justify-content: space-between;
 `
 
-export const NavLink = styled(Link)`
-  margin-right: ${props => props.marginRight || '0'};
+export const StoreLink = styled(Link)`
+  margin-right: 14px;
   padding: 20px 20px;
   display: block;
   font-size: 18px;
   color: #111;
-  font-weight: ${props => props.fontWeight || '400'};
+  font-weight: 700;
+  :hover {
+    color: #5f9a3f;
+  }
+`
+
+export const AdminLink = styled(Link)`
+  padding: 20px 20px;
+  display: block;
+  font-size: 18px;
+  color: #111;
   :hover {
     color: #5f9a3f;
   }
