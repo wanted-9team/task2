@@ -1,8 +1,18 @@
 import React, { useCallback } from 'react'
 import * as S from '../AdminRegister.style'
 
-const AdminTextInputField = ({ label, id, type, attr, setProductData, max, min, requiredText }) => {
-  const handleChange = useCallback(
+const AdminTextInputField = ({
+  label,
+  id,
+  type,
+  attr,
+  setProductData,
+  max,
+  min,
+  requiredText,
+  step,
+}) => {
+  const handleChangeProduct = useCallback(
     ({ target }) => {
       const { id, value } = target
       setProductData(prev => ({ ...prev, [id]: value }))
@@ -16,7 +26,14 @@ const AdminTextInputField = ({ label, id, type, attr, setProductData, max, min, 
         {label} <S.LabelRequiredText>{requiredText}</S.LabelRequiredText>
       </S.LabelText>
 
-      <S.TextInput id={id} type={type} onChange={handleChange} max={max} min={min} />
+      <S.TextInput
+        id={id}
+        type={type}
+        onChange={handleChangeProduct}
+        max={max}
+        min={min}
+        step={step}
+      />
     </S.Label>
   )
 }

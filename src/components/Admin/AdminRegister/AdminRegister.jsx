@@ -84,7 +84,8 @@ const AdminRegister = () => {
           label="가격"
           id="price"
           type="number"
-          min="1"
+          min="100"
+          step="100"
           requiredText="* 필수 입력"
         />
         <S.HalfBox>
@@ -104,6 +105,8 @@ const AdminRegister = () => {
             type="number"
             attr="half"
             max="100"
+            step="1"
+            min="0"
           />
         </S.HalfBox>
         <S.Label htmlFor="description">
