@@ -3,7 +3,7 @@ import StyleVariables from '../../../styles/StyleVariables'
 
 export const AdminShopContainer = styled.table`
   width: 1200px;
-  margin: 20px auto;
+  margin: auto;
   border: 1px solid black;
   border-bottom: none;
 `
@@ -26,7 +26,7 @@ const AdminCommonStyle = styled.td`
 `
 
 const AdminVisibleColumn = styled(AdminCommonStyle)`
-  flex: 0.8;
+  flex: 0.6;
 `
 
 const AdminProductCodeColumn = styled(AdminCommonStyle)`
@@ -39,6 +39,8 @@ const AdminProductImgColumn = styled(AdminCommonStyle)`
 
 const AdminProductNameColumn = styled(AdminCommonStyle)`
   flex: 2;
+  padding: 20px;
+  word-break: keep-all;
 `
 
 const AdminProductPriceColumn = styled(AdminCommonStyle)`
