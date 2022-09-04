@@ -9,7 +9,10 @@ export const AdminShopItemContainer = styled.tr`
   border-bottom: 1px solid black;
 `
 
-export const VisibleBox = styled.input``
+export const VisibleBox = styled.input`
+  width: 20px;
+  height: 20px;
+`
 
 export const ProductImg = styled.img`
   width: 120px;
@@ -22,7 +25,9 @@ export const AdminProductCode = styled(S.AdminProductCode)``
 
 export const AdminProductImg = styled(S.AdminProductImg)``
 
-export const AdminProductName = styled(S.AdminProductName)``
+export const AdminProductName = styled(S.AdminProductName)`
+  ${StyleVariables.flex('row', 'flex-start')}
+`
 
 export const AdminProductPrice = styled(S.AdminProductPrice)``
 
@@ -42,7 +47,16 @@ export const AdminButtonContainer = styled(S.AdminButton)`
 
 export const AdminButton = styled.button`
   ${StyleVariables.flex()}
-  width: 130px;
+  width: 100px;
   height: 50px;
-  background-color: aliceblue;
+  border-radius: 5px;
+  border: 1px solid #4a9536;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: #4a9536;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #4a9536;
+    color: white;
+  }
 `
