@@ -10,7 +10,7 @@ const ShippingInputField = ({
   shippingInputRef,
   requiredText,
 }) => {
-  const handleChange = useCallback(
+  const handleChangeShipping = useCallback(
     ({ target }) => {
       const { id, value } = target
       if (id === 'shippingOption') {
@@ -31,9 +31,10 @@ const ShippingInputField = ({
       <S.TextInput
         id={id}
         type={type}
-        onChange={handleChange}
+        onChange={handleChangeShipping}
         disabled={shippingFreeCheck}
         min="0"
+        step="100"
         ref={shippingInputRef}
       />
     </S.Label>
