@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 
 export const Header = styled.header`
   position: fixed;
-  width: 100%;
-  height: 90px;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 90px;
+  padding: 0 40px;
   border-bottom: 1px solid #eee;
   background-color: #fff;
   z-index: 100;
@@ -17,7 +19,7 @@ export const NavWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1200px;
+  width: 100%;
 `
 
 export const LogoLink = styled(Link)`
