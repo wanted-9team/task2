@@ -7,8 +7,6 @@ import useProductApi from '../../../utils/useProductApi'
 const FruitStoreList = () => {
   const [data, setData] = useState([])
   const [total, setTotal] = useState(0)
-  const [activedPage, setActivedPage] = useState(1)
-  const limit = 10
 
   const { getProducts } = useProductApi()
 
@@ -36,13 +34,7 @@ const FruitStoreList = () => {
       </S.GridWrapper>
 
       <S.PaginationWrapper>
-        <Pagination
-          total={total}
-          limit={limit}
-          activedPage={activedPage}
-          setActivedPage={setActivedPage}
-          getDatas={getDatas}
-        />
+        <Pagination total={total} getDatas={getDatas} />
       </S.PaginationWrapper>
     </>
   )

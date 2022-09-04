@@ -18,7 +18,7 @@ const data = [
     ],
     origin: 'Korea',
     shipping: { option: '택배', price: 0, info: '' },
-    visible: true,
+    visible: false,
   },
   {
     id: 2,
@@ -627,7 +627,7 @@ const data = [
       price: 4000,
       info: '40000원 이상 구매시 무료배송',
     },
-    visible: true,
+    visible: false,
   },
   {
     id: 30,
