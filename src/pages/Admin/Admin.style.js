@@ -4,6 +4,7 @@ import StyleVariables from '../../styles/StyleVariables'
 export const AdminMainPage = styled.div`
   width: 1300px;
   padding: 0 50px;
+  margin: 0 auto;
 `
 
 export const AdminPageHeader = styled.div`
