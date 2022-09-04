@@ -7,7 +7,7 @@ export const GridWrapper = styled.div`
 `
 export const Title = styled.h2`
   display: flex;
-  margin-bottom: 10px;
+  margin: 10px 0;
 `
 export const TitleStrong = styled.strong`
   margin-left: 5px;
