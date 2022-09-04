@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import * as S from './AdminRegister.style'
+import * as S from '../AdminRegister.style'
 const ShippingInputField = ({
   label,
   id,

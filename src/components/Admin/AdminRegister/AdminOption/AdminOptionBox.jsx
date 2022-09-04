@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import * as S from './AdminRegister.style'
+import * as S from '../AdminRegister.style'
 import { AiOutlineClose } from 'react-icons/ai'
 
 const AdminOptionBox = ({ idx, setOptionComponent, OptionComponent }) => {
