@@ -2,7 +2,7 @@ import styled from 'styled-components'
 export const PaymentInfoContainerWrapper = styled.div`
   width: 70%;
   border-radius: 10px;
-  padding: 5px;
+  padding: 15px;
   box-shadow: 5px 5px 10px lightgray;
 `
 
@@ -12,7 +12,7 @@ export const PaymentOrderItemHeader = styled.div`
   margin-bottom: 20px;
 `
 
-export const PaymentOrderItemInfoContainer = styled.div`
+export const PaymentOrderItemInfoBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,17 +22,18 @@ export const PaymentOrderItemInfoContainer = styled.div`
   border-bottom: 1px solid black;
 `
 
-export const PaymentOrderItemImageContainer = styled.div`
+export const PaymentOrderItemImageBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   margin-right: 25px;
   object-fit: cover;
 
   img {
     width: 100%;
+    height: 100%;
     border-radius: 5px;
   }
 `
@@ -42,9 +43,7 @@ export const PaymentOrderItemInfo = styled.div`
   line-height: 21px;
 `
 
-export const PaymentOrderItemName = styled.div`
-  font-size: 20px;
-`
+export const PaymentOrderItemName = styled.div``
 
 export const PaymentOrderOptions = styled.div`
   font-size: 16px;
@@ -52,14 +51,44 @@ export const PaymentOrderOptions = styled.div`
 `
 
 export const PaymentOrderQuantity = styled.div`
-  font-size: 16px;
+  font-size: 20px;
   margin: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`
+
+export const Minus = styled.div`
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(#000, #000), linear-gradient(#000, #000);
+  background-position: center;
+  background-size: 40% 2px;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0 10px;
+`
+
+export const MinusNoClick = styled(Minus)`
+  opacity: 0.15;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  cursor: default;
+`
+
+export const Plus = styled(Minus)`
+  background-size: 40% 2px, 2px 40%;
 `
 
 export const PaymentOrderItemPrice = styled.div`
-  font-size: 20px;
-  font-weight: 600;
+  text-decoration: line-through;
 `
+
+export const PaymentOrderItemSalePrice = styled.div``
+
+export const PaymentOrderPriceInfo = styled.div``
 
 export const CustomerInfoHeader = styled.div`
   font-size: 20px;
@@ -95,6 +124,18 @@ export const ShippingDeliveryInfoInput = styled.input`
   margin-bottom: 5px;
 `
 
+export const ShippingDeliveryHeaderBox = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export const ShippingDeliveryHeader = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+`
+
 export const ShippingDeliveryInfoInputBox = styled.div``
 
 export const ShippingDeliveryAddressSearchInput = styled.input`
@@ -103,7 +144,7 @@ export const ShippingDeliveryAddressSearchInput = styled.input`
   height: 40px;
 `
 
-export const ShippingDeliveryAddressSearchBtn = styled.input`
+export const ShippingDeliveryAddressSearchBtn = styled.button`
   width: 20%;
   height: 40px;
   outline: none;
