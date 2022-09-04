@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const Header = styled.header`
   position: fixed;
+  top: 0;
   width: 100%;
   height: 90px;
   display: flex;
@@ -17,10 +18,12 @@ export const NavWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
 `
 
 export const LogoLink = styled(Link)`
+  margin-left: 20px;
   display: flex;
   align-items: center;
   width: 179px;
@@ -39,13 +42,17 @@ export const Nav = styled.nav`
 
 export const StoreLink = styled(Link)`
   margin-right: 14px;
-  padding: 20px 20px;
+  padding: 20px;
   display: block;
   font-size: 18px;
   color: #111;
   font-weight: 700;
   :hover {
     color: #5f9a3f;
+  }
+  @media screen and (max-width: 414px) {
+    padding: 10px;
+    font-size: 16px;
   }
 `
 
@@ -56,5 +63,9 @@ export const AdminLink = styled(Link)`
   color: #111;
   :hover {
     color: #5f9a3f;
+  }
+  @media screen and (max-width: 414px) {
+    padding: 10px;
+    font-size: 16px;
   }
 `
