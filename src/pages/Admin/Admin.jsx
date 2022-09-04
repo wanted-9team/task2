@@ -1,20 +1,36 @@
 import React from 'react'
 import * as S from './Admin.style'
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 const Admin = () => {
-  const params = useLocation()
+  const location = useLocation()
+  const navigate = useNavigate()
 
-  console.log(params)
+  const goAdminList = () => {
+    navigate('/admin_shop/1')
+  }
+
+  const goRegisterPage = () => {
+    navigate('/admin_register')
+  }
   return (
     <S.AdminMainPage>
-      <S.AdminPageHeader>
-        <S.AdminTitle>관리하기</S.AdminTitle>
-        <S.AdminLinkContainer>
-          <Link to={'/admin_register'}>등록페이지</Link>
-          <Link to={'/admin_shop'}>관리페이지</Link>
-        </S.AdminLinkContainer>
-      </S.AdminPageHeader>
+      {location.pathname === '/admin_register' ? (
+        <S.AdminPageHeader>
+          <S.AdminTitle>상품등록</S.AdminTitle>
+          <S.AdminLinkContainer>
+            <S.AdminLinkButton onClick={goAdminList}>상품목록</S.AdminLinkButton>
+            <S.AdminLinkButton>등록하기</S.AdminLinkButton>
+          </S.AdminLinkContainer>
+        </S.AdminPageHeader>
+      ) : (
+        <S.AdminPageHeader>
+          <S.AdminTitle>상품목록</S.AdminTitle>
+          <S.AdminLinkContainer>
+            <S.AdminLinkButton onClick={goRegisterPage}>상품 등록하기</S.AdminLinkButton>
+          </S.AdminLinkContainer>
+        </S.AdminPageHeader>
+      )}
       <Outlet />
     </S.AdminMainPage>
   )
