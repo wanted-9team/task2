@@ -1,15 +1,29 @@
-import React, { useState } from 'react'
+import React, { useCallback } from 'react'
 import * as S from './AdminRegister.style'
 import { AiOutlineClose } from 'react-icons/ai'
-const AdminOption = ({ idx, createOptionData, setCreateOptionData }) => {
-  const handleOptionData = ({ target }) => {
-    const { id, value } = target
-    const optionData = { [id]: value }
-    console.log(optionData)
-    createOptionData[idx] = {}
-    // setCreateOptionData(prev => [...prev, (prev[idx] = {})])
-    console.log(idx, createOptionData[idx])
-  }
+
+const AdminOptionBox = ({ idx, setOptionComponent, OptionComponent }) => {
+  const handleOptionData = useCallback(
+    ({ target }) => {
+      const { id, value } = target
+      const copyOptionComp = [...OptionComponent]
+      if (id === 'option') {
+        copyOptionComp[idx] = { ...copyOptionComp[idx], [id]: value }
+      } else if (id === 'price') {
+        copyOptionComp[idx] = { ...copyOptionComp[idx], [id]: value }
+      }
+      setOptionComponent(copyOptionComp)
+    },
+    [OptionComponent, setOptionComponent, idx],
+  )
+
+  const handleDeleteOption = useCallback(
+    optionIdx => {
+      setOptionComponent(prev => prev.filter((item, idx) => idx !== optionIdx))
+    },
+    [setOptionComponent],
+  )
+
   return (
     <S.OptionBoxDiv>
       <S.OptionHeader>
@@ -17,7 +31,7 @@ const AdminOption = ({ idx, createOptionData, setCreateOptionData }) => {
           <S.LabelText>필수</S.LabelText>
           <S.CheckInput id="required" type="checkbox" />
         </S.CheckLabel>
-        <AiOutlineClose />
+        <AiOutlineClose onClick={() => handleDeleteOption(idx)} />
       </S.OptionHeader>
       <S.HalfBox>
         <S.Label attr="half" htmlFor="option">
@@ -33,4 +47,4 @@ const AdminOption = ({ idx, createOptionData, setCreateOptionData }) => {
   )
 }
 
-export default AdminOption
+export default AdminOptionBox
