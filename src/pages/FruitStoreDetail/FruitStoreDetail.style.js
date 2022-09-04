@@ -25,9 +25,26 @@ export const DetailWrapper = styled.div``
 export const ImageWrapper = styled.div`
   width: 50%;
   display: inline-block;
+`
+
+export const ImageSection = styled.div`
   height: auto;
   overflow: hidden;
   vertical-align: top;
+`
+
+export const ImageList = styled.div``
+
+export const ThumbnailWrapper = styled.div`
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+`
+
+export const Thumbnail = styled.img`
+  width: 100%;
+  height: auto;
 `
 
 export const Image = styled.img`
@@ -174,4 +191,3 @@ export const DetailTab = styled(Link)`
   line-height: 40px;
   border-right: 1px solid #ddd;
 `
-
