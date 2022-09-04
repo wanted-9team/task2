@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router'
 const FruitStoreDetail = () => {
   const [data, setData] = useState({})
   const [selectedOption, setSelectedOption] = useState('필수선택 (필수)')
+  const [nowImage, setNowImage] = useState(0)
   const params = useParams()
 
   const getDatas = async () => {
@@ -24,9 +25,14 @@ const FruitStoreDetail = () => {
     e && setSelectedOption(e.target.value)
   }
 
+  const imgMouseOver = e => {
+    e && console.log(e.target.value)
+  }
+
   useEffect(() => {
     getDatas()
     handleSelect()
+    imgMouseOver()
   }, [])
 
   const navigate = useNavigate()
@@ -45,7 +51,20 @@ const FruitStoreDetail = () => {
         </S.Category>
         <S.DetailWrapper>
           <S.ImageWrapper>
-            <S.Image src={data.imageUrl} />
+            <S.ImageSection>
+              <S.Image src={data.imageUrl ? data.imageUrl[nowImage] : console.log('')} />
+            </S.ImageSection>
+            <S.ImageList>
+              {data.imageUrl?.map(img => (
+                <S.ThumbnailWrapper>
+                  <S.Thumbnail
+                    name={data.imageUrl?.indexOf(img)}
+                    src={img}
+                    onMouseOver={e => e && setNowImage(e.target.name)}
+                  />
+                </S.ThumbnailWrapper>
+              ))}
+            </S.ImageList>
           </S.ImageWrapper>
           <S.TextWrapper>
             <S.TextTopWrapper>
