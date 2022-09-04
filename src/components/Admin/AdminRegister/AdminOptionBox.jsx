@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import * as S from './AdminRegister.style'
 import { AiOutlineClose } from 'react-icons/ai'
-const AdminOption = ({ idx, createOptionData, setCreateOptionData }) => {
+const AdminOptionBox = ({ idx, createOptionData, setCreateOptionData }) => {
   const handleOptionData = ({ target }) => {
     const { id, value } = target
     const optionData = { [id]: value }
@@ -33,4 +33,4 @@ const AdminOption = ({ idx, createOptionData, setCreateOptionData }) => {
   )
 }
 
-export default AdminOption
+export default AdminOptionBox

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import * as S from './AdminRegister.style'
 import InputField from './AdminInputField'
-import AdminOption from './AdminOptionBox'
+import AdminOptionBox from './AdminOptionBox'
 import ImageUploadBox from './ImageUploadBox'
 import AdminCheckBox from './AdminCheckBox'
 const STATUSDATA = [
@@ -103,7 +103,7 @@ const AdminRegister = () => {
         </S.Label>
         {createOptionData &&
           createOptionData.map((div, idx) => (
-            <AdminOption
+            <AdminOptionBox
               key={idx}
               idx={idx}
               createOptionData={createOptionData}
