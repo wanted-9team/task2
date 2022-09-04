@@ -11,6 +11,7 @@ const AdminTextInputField = ({
   min,
   requiredText,
   step,
+  requiredInput,
 }) => {
   const handleChangeProduct = useCallback(
     ({ target }) => {
@@ -33,6 +34,7 @@ const AdminTextInputField = ({
         max={max}
         min={min}
         step={step}
+        requiredInput={requiredInput}
       />
     </S.Label>
   )

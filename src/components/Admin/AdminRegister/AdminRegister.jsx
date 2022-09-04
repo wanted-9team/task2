@@ -5,7 +5,8 @@ import AdminOptionBox from './AdminOption/AdminOptionBox'
 import ImageUploadBox from './AdminImageUpload/ImageUploadBox'
 import AdminCheckBox from './AdminInput/AdminCheckBox'
 import ShippingInputField from './AdminInput/ShippingInputField'
-import { AdminRegisterContext } from './AdminRegisterProvider'
+import SuccessModal from './SuccessModal'
+import { AdminRegisterContext } from '../../../store/AdminRegisterProvider'
 const STATUSDATA = [
   { id: 1, type: 'SALE' },
   { id: 2, type: 'BEST' },
@@ -30,6 +31,8 @@ const AdminRegister = () => {
     setShippingData,
     shippingFreeCheck,
     OptionComponent,
+    openModal,
+    requiredInput,
   } = useContext(AdminRegisterContext)
 
   useEffect(() => {
@@ -65,6 +68,7 @@ const AdminRegister = () => {
           id="name"
           type="text"
           requiredText="* 필수 입력"
+          requiredInput={requiredInput}
         />
         <AdminTextInputField
           setProductData={setProductData}
@@ -74,6 +78,7 @@ const AdminRegister = () => {
           min="100"
           step="100"
           requiredText="* 필수 입력"
+          requiredInput={requiredInput}
         />
         <S.HalfBox>
           <AdminTextInputField
@@ -84,6 +89,7 @@ const AdminRegister = () => {
             attr="half"
             min="1"
             requiredText="* 필수 입력"
+            requiredInput={requiredInput}
           />
           <AdminTextInputField
             setProductData={setProductData}
@@ -137,6 +143,7 @@ const AdminRegister = () => {
             requiredText="* 필수 입력"
             shippingFreeCheck={shippingFreeCheck}
             shippingInputRef={shippingInputRef}
+            requiredInput={requiredInput}
           />
           <S.Label attr="shippingFree">
             <S.LabelText>무료</S.LabelText>
@@ -167,6 +174,7 @@ const AdminRegister = () => {
           ))}
         </S.StatusBox>
       </S.BoxDiv>
+      <SuccessModal openModal={openModal} />
     </S.RegisterContaiDiv>
   )
 }

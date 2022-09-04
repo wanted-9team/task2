@@ -22,6 +22,7 @@ const useProductApi = () => {
       return await axios.post('/createproduct', { data })
     } catch (e) {
       console.log(e)
+      return e
     }
   }
   return { getProducts, deleteProducts, createProduct }
