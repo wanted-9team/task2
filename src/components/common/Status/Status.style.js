@@ -8,6 +8,7 @@ export const StatusContainer = styled.div`
   padding: 0 5px;
   height: 24px;
   font-size: 11px;
+  border-radius: 4px;
   ${({ children }) => {
     switch (children) {
       case 'sale':

@@ -2,30 +2,27 @@ import React, { useEffect, useRef, useState } from 'react'
 import * as S from './AdminShop.style'
 import AdminShopItem from '../AdminShopItem/AdminShopItem'
 import useProductApi from '../../../utils/useProductApi'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const AdminShop = () => {
   const [itemLists, setItemLists] = useState([])
   const [modifyItemId, setModifyItemId] = useState('')
-  const getItemsApi = useProductApi()
+  const { getProducts } = useProductApi()
+  const navigate = useNavigate()
+  const params = useParams()
   const PAGELIMITS = useRef(10)
   const paginationNum = useRef(0)
-  const currentPageNum = useRef(1)
-  const navigate = useNavigate()
 
   useEffect(() => {
-    getItemsApi.getProducts(currentPageNum.current).then(res => {
+    getProducts(params.id).then(res => {
       paginationNum.current = Math.ceil(res.data.totalResults / PAGELIMITS.current)
       setItemLists(res.data.list)
     })
-  }, [currentPageNum.current])
+  }, [params.id])
 
   const movePage = pageNum => {
-    currentPageNum.current = pageNum
     navigate(`/admin_shop/${pageNum}`)
   }
-
-  console.log(currentPageNum)
 
   return (
     <>
@@ -57,7 +54,11 @@ const AdminShop = () => {
       </S.AdminShopContainer>
       <S.AdminPageButtonContainer>
         {new Array(paginationNum.current).fill('').map((numItem, index) => (
-          <S.AdminListPageButton key={index} onClick={() => movePage(index + 1)}>
+          <S.AdminListPageButton
+            active={Number(params.id) === index + 1}
+            key={index}
+            onClick={() => movePage(index + 1)}
+          >
             {index + 1}
           </S.AdminListPageButton>
         ))}
