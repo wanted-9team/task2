@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 export const RegisterContaiDiv = styled.div`
   display: flex;
-  width: 1200px;
+  max-width: 1200px;
   background-color: #eee;
   margin: 0 auto;
   padding: 73px 100px;
@@ -76,6 +76,7 @@ export const TextInput = styled.input`
   border-radius: 4px;
   border: 1px solid #a1a1a1;
   padding: 10px;
+  width: 100%;
   &[type='checkbox'] {
     height: auto;
   }
@@ -116,6 +117,9 @@ export const OptionHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  svg {
+    cursor: pointer;
+  }
 `
 export const OptionBoxDiv = styled.div`
   width: 100%;
