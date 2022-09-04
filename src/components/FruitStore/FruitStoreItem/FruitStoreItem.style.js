@@ -33,6 +33,8 @@ export const ItemDetailWrapper = styled.div`
 export const ItemPayWrapper = styled.div``
 export const ItemName = styled.h2`
   margin-bottom: 5px;
+  line-height: 1.5;
+  font-size: 1rem;
   cursor: pointer;
 `
 export const ItemPriceWrapper = styled.div`
@@ -40,6 +42,8 @@ export const ItemPriceWrapper = styled.div`
 `
 export const ItemPriceText = styled.p`
   padding-right: 5px;
+  line-height: 1.25;
+  font-size: 1rem;
   ${props =>
     props.sale ||
     css`
@@ -59,7 +63,7 @@ export const StatusWrapper = styled.div`
 export const ItemCommentWrapper = styled.div`
   display: flex;
   align-items: center;
-  font-size: 13px;
+  font-size: 0.875rem;
 `
 export const CommentIcon = styled.div`
   margin-right: 5px;

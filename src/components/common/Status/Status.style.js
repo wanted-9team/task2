@@ -25,6 +25,8 @@ export const StatusContainer = styled.div`
           color: white;
           background-color: rgb(102, 102, 102);
         `
+      default:
+        return css``
     }
   }}
 `
