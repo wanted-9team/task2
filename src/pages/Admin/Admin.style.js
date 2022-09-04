@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import StyleVariables from '../../styles/StyleVariables'
 
 export const AdminMainPage = styled.div`

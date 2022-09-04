@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
 import StyleVariables from '../../../styles/StyleVariables'
 
 export const AdminShopContainer = styled.table`
@@ -88,4 +89,17 @@ export const AdminPageButtonContainer = styled.div`
 
 export const AdminListPageButton = styled.button`
   font-size: 20px;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #4a9536;
+  border-radius: 5px;
+  color: #4a9536;
+  ${({ active }) => {
+    if (active) {
+      return css`
+        color: white;
+        background-color: #4a9536;
+      `
+    }
+  }}
 `
