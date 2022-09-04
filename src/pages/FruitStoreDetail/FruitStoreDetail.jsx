@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import * as S from './FruitStoreDetail.style'
 import { getFormattedPrice, getSalePrice } from '../../utils/getPrice'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
+import { ShopInfoContextStore } from '../../store/ShopInfoContext'
 
 const FruitStoreDetail = () => {
   const [data, setData] = useState({})
   const [selectedOption, setSelectedOption] = useState('필수선택 (필수)')
   const [nowImage, setNowImage] = useState(0)
   const params = useParams()
+  const { shopItemInfo, setShopItemInfo } = useContext(ShopInfoContextStore)
 
   const getDatas = async () => {
     await axios.get('/data/data.json').then(res => {
@@ -47,7 +49,7 @@ const FruitStoreDetail = () => {
       <S.TopWrapper>
         <S.Category>
           {' '}
-          Home > <S.CategoryLink to="/fruit_store">FRUITTE STORE</S.CategoryLink>
+          <S.CategoryLink to="/fruit_store">FRUITTE STORE</S.CategoryLink>
         </S.Category>
         <S.DetailWrapper>
           <S.ImageWrapper>
