@@ -48,7 +48,7 @@ export const Label = styled.label`
       case 'shippingFree':
         return css`
           flex-direction: row-reverse;
-          width: 100px;
+          flex-basis: 100px;
           align-items: center;
           justify-content: center;
           margin-top: 20px;
@@ -70,6 +70,11 @@ export const LabelText = styled.h3`
   padding: 5px 0;
   font-weight: 600;
   font-size: 16px;
+`
+export const LabelRequiredText = styled.span`
+  font-size: 12px;
+  font-weight: 400;
+  color: #a1a1a1;
 `
 export const TextInput = styled.input`
   height: 42px;
@@ -106,6 +111,7 @@ export const CheckLabel = styled.label`
     font-weight: 400;
   }
 `
+
 export const CheckInput = styled.input``
 
 export const OptionButton = styled.button`

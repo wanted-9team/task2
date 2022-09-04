@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import * as S from './AdminRegister.style'
+import * as S from '../AdminRegister.style'
 const ShippingInputField = ({
   label,
   id,
@@ -8,8 +8,9 @@ const ShippingInputField = ({
   shippingFreeCheck,
   setShippingData,
   shippingInputRef,
+  requiredText,
 }) => {
-  const handleChange = useCallback(
+  const handleChangeShipping = useCallback(
     ({ target }) => {
       const { id, value } = target
       if (id === 'shippingOption') {
@@ -24,13 +25,16 @@ const ShippingInputField = ({
   )
   return (
     <S.Label htmlFor={id} attr={attr}>
-      <S.LabelText>{label}</S.LabelText>
+      <S.LabelText>
+        {label} <S.LabelRequiredText>{requiredText}</S.LabelRequiredText>
+      </S.LabelText>
       <S.TextInput
         id={id}
         type={type}
-        onChange={handleChange}
+        onChange={handleChangeShipping}
         disabled={shippingFreeCheck}
         min="0"
+        step="100"
         ref={shippingInputRef}
       />
     </S.Label>

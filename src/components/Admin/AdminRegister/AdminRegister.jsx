@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import * as S from './AdminRegister.style'
-import AdminTextInputField from './AdminTextInputField'
-import AdminOptionBox from './AdminOptionBox'
-import ImageUploadBox from './ImageUploadBox'
-import AdminCheckBox from './AdminCheckBox'
-import ShippingInputField from './ShippingInputField'
+import AdminTextInputField from './AdminInput/AdminTextInputField'
+import AdminOptionBox from './AdminOption/AdminOptionBox'
+import ImageUploadBox from './AdminImageUpload/ImageUploadBox'
+import AdminCheckBox from './AdminInput/AdminCheckBox'
+import ShippingInputField from './AdminInput/ShippingInputField'
 import useProductApi from '../../../utils/useProductApi'
 const STATUSDATA = [
   { id: 1, type: 'SALE' },
@@ -36,7 +36,7 @@ const AdminRegister = () => {
   const [uploadedImages, setUploadedImages] = useState([])
   const [shippingData, setShippingData] = useState({ option: '', price: 0, info: '' })
   const shippingInputRef = useRef(null)
-  const { createProduct, getProducts } = useProductApi()
+  const { createProduct } = useProductApi()
   useEffect(() => {
     if (shippingFreeCheck) {
       shippingInputRef.current.value = 0
@@ -66,21 +66,27 @@ const AdminRegister = () => {
       shipping: shippingData,
       select: [...OptionComponent],
     }
-    createProduct(body)
-      .then(res => console.log(res))
-      .then()
-  }, [productData, uploadedImages, statusData, shippingData, OptionComponent])
+    createProduct(body).then(res => console.log(res))
+  }, [productData, uploadedImages, statusData, shippingData, OptionComponent, createProduct])
 
   return (
     <S.RegisterContaiDiv>
       <S.BoxDiv>
-        <AdminTextInputField setProductData={setProductData} label="상품명" id="name" type="text" />
+        <AdminTextInputField
+          setProductData={setProductData}
+          label="상품명"
+          id="name"
+          type="text"
+          requiredText="* 필수 입력"
+        />
         <AdminTextInputField
           setProductData={setProductData}
           label="가격"
           id="price"
           type="number"
-          min="1"
+          min="100"
+          step="100"
+          requiredText="* 필수 입력"
         />
         <S.HalfBox>
           <AdminTextInputField
@@ -90,6 +96,7 @@ const AdminRegister = () => {
             type="number"
             attr="half"
             min="1"
+            requiredText="* 필수 입력"
           />
           <AdminTextInputField
             setProductData={setProductData}
@@ -98,6 +105,8 @@ const AdminRegister = () => {
             type="number"
             attr="half"
             max="100"
+            step="1"
+            min="0"
           />
         </S.HalfBox>
         <S.Label htmlFor="description">
@@ -138,6 +147,7 @@ const AdminRegister = () => {
             label="배송비"
             id="shippingPrice"
             type="number"
+            requiredText="* 필수 입력"
             shippingFreeCheck={shippingFreeCheck}
             shippingInputRef={shippingInputRef}
           />
