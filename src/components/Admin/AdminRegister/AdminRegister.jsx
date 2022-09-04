@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import * as S from './AdminRegister.style'
-import AdminTextInputField from './AdminTextInputField'
-import AdminOptionBox from './AdminOptionBox'
-import ImageUploadBox from './ImageUploadBox'
-import AdminCheckBox from './AdminCheckBox'
-import ShippingInputField from './ShippingInputField'
+import AdminTextInputField from './AdminInput/AdminTextInputField'
+import AdminOptionBox from './AdminOption/AdminOptionBox'
+import ImageUploadBox from './AdminImageUpload/ImageUploadBox'
+import AdminCheckBox from './AdminInput/AdminCheckBox'
+import ShippingInputField from './AdminInput/ShippingInputField'
 import useProductApi from '../../../utils/useProductApi'
 const STATUSDATA = [
   { id: 1, type: 'SALE' },

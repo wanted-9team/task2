@@ -1,5 +1,5 @@
 import React from 'react'
-import * as S from './AdminRegister.style'
+import * as S from '../AdminRegister.style'
 
 const AdminCheckBox = ({ sts, setStatusData, statusData }) => {
   const handleStatusCheck = ({ target }) => {

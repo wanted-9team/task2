@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import ImagePreview from './ImagePreview'
-import * as S from './AdminRegister.style'
+import * as S from '../AdminRegister.style'
 import { BsUpload } from 'react-icons/bs'
 const ImageUploadBox = ({ max = 5, setUploadedImages, uploadedImages }) => {
   const [previewImages, setPreviewImages] = useState([])

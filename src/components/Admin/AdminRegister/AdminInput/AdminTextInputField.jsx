@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import * as S from './AdminRegister.style'
+import * as S from '../AdminRegister.style'
 
 const AdminTextInputField = ({ label, id, type, attr, setProductData, max, min, requiredText }) => {
   const handleChange = useCallback(
