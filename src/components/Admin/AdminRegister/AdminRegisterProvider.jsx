@@ -33,7 +33,7 @@ const AdminRegisterProvider = ({ children }) => {
       select: [...OptionComponent],
     }
 
-    createProduct(body)
+    createProduct(body).then(res => console.log(res))
   }
   return (
     <AdminRegisterContext.Provider

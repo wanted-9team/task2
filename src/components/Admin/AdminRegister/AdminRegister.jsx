@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useCallback, useRef, useContext } from 'react'
+import React, { useEffect, useCallback, useRef, useContext } from 'react'
 import * as S from './AdminRegister.style'
 import AdminTextInputField from './AdminInput/AdminTextInputField'
 import AdminOptionBox from './AdminOption/AdminOptionBox'
 import ImageUploadBox from './AdminImageUpload/ImageUploadBox'
 import AdminCheckBox from './AdminInput/AdminCheckBox'
 import ShippingInputField from './AdminInput/ShippingInputField'
-
 import { AdminRegisterContext } from './AdminRegisterProvider'
 const STATUSDATA = [
   { id: 1, type: 'SALE' },

@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-
 export const RegisterContaiDiv = styled.div`
   display: flex;
   max-width: 1200px;
@@ -17,7 +16,6 @@ export const RegisterContaiDiv = styled.div`
     flex-direction: column;
   }
 `
-
 export const BoxDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,7 +42,6 @@ export const Label = styled.label`
             margin-right: 0;
           }
         `
-
       case 'shippingFree':
         return css`
           flex-direction: row-reverse;
@@ -86,7 +83,6 @@ export const TextInput = styled.input`
     height: auto;
   }
 `
-
 export const TextArea = styled.textarea`
   height: 227px;
   resize: none;
@@ -111,7 +107,6 @@ export const CheckLabel = styled.label`
     font-weight: 400;
   }
 `
-
 export const CheckInput = styled.input``
 
 export const OptionButton = styled.button`
@@ -167,7 +162,6 @@ export const PreviewContainer = styled.div`
   display: flex;
   height: auto;
 `
-
 export const ImagePreviewWrapper = styled.div`
   margin-right: 5px;
   position: relative;
