@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import * as S from '../AdminRegister.style'
 import { AiOutlineClose } from 'react-icons/ai'
-
 const AdminOptionBox = ({ idx, setOptionComponent, OptionComponent }) => {
   const handleOptionData = useCallback(
     ({ target }) => {
@@ -36,11 +35,23 @@ const AdminOptionBox = ({ idx, setOptionComponent, OptionComponent }) => {
       <S.HalfBox>
         <S.Label attr="half" htmlFor="option">
           <S.LabelText>옵션명</S.LabelText>
-          <S.TextInput id="option" type="text" onChange={handleOptionData} />
+          <S.TextInput
+            id="option"
+            type="text"
+            value={OptionComponent[idx].option || ''}
+            onChange={handleOptionData}
+          />
         </S.Label>
         <S.Label attr="half" htmlFor="price">
           <S.LabelText>옵션 가격</S.LabelText>
-          <S.TextInput id="price" type="number" min="1" onChange={handleOptionData} />
+          <S.TextInput
+            id="price"
+            type="number"
+            value={OptionComponent[idx].price || ''}
+            min="100"
+            step="100"
+            onChange={handleOptionData}
+          />
         </S.Label>
       </S.HalfBox>
     </S.OptionBoxDiv>
