@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AdminRegisterContext } from '../../components/Admin/AdminRegister/AdminRegisterProvider'
+import { AdminRegisterContext } from '../../store/AdminRegisterProvider'
 
 import * as S from './Admin.style'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'

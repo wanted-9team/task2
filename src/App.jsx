@@ -9,7 +9,7 @@ import FruitStore from './pages/FruitStore/FruitStore'
 import FruitStoreDetail from './pages/FruitStoreDetail/FruitStoreDetail'
 import ShopList from './pages/ShopList/ShopList'
 import ShopPayment from './pages/ShopPayment/ShopPayment'
-import AdminRegisterProvider from './components/Admin/AdminRegister/AdminRegisterProvider'
+
 const App = () => {
   return (
     <BrowserRouter>

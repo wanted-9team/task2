@@ -4,8 +4,10 @@ export const RegisterContaiDiv = styled.div`
   max-width: 1200px;
   background-color: #eee;
   margin: 0 auto;
+  margin-bottom: 40px;
   padding: 73px 100px;
   justify-content: space-between;
+  position: relative;
   @media (max-width: 768px) {
     width: 708px;
     padding: 53px 20px;
@@ -82,6 +84,13 @@ export const TextInput = styled.input`
   &[type='checkbox'] {
     height: auto;
   }
+  ${({ requiredInput }) => {
+    if (requiredInput) {
+      return css`
+        border: 1px solid red;
+      `
+    }
+  }}
 `
 export const TextArea = styled.textarea`
   height: 227px;
@@ -178,4 +187,30 @@ export const ImagePreviewWrapper = styled.div`
     top: 5%;
     right: 5%;
   }
+`
+
+export const SuccessModalDiv = styled.div`
+  width: 200px;
+  height: 40px;
+  position: fixed;
+  background-color: #575757;
+  bottom: 5%;
+  left: 5%;
+  border-radius: 3px;
+  text-align: left;
+  padding: 0 20px;
+  line-height: 40px;
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  visibility: hidden;
+  opacity: 0;
+  ${({ openModal }) => {
+    if (openModal) {
+      return css`
+        visibility: visible;
+        opacity: 1;
+      `
+    }
+  }};
 `

@@ -1,5 +1,5 @@
-import React, { createContext, useState } from 'react'
-import useProductApi from '../../../utils/useProductApi'
+import React, { createContext, useState, useEffect } from 'react'
+import useProductApi from '../utils/useProductApi'
 
 export const AdminRegisterContext = createContext()
 
@@ -21,7 +21,8 @@ const AdminRegisterProvider = ({ children }) => {
   const [shippingFreeCheck, setShippingFreeCheck] = useState(false)
   const [uploadedImages, setUploadedImages] = useState([])
   const [shippingData, setShippingData] = useState({ option: '', price: 0, info: '' })
-
+  const [openModal, setOpenModal] = useState(false)
+  const [requiredInput, setRequiredInput] = useState(false)
   const { createProduct } = useProductApi()
 
   const handleSubmitData = () => {
@@ -33,8 +34,21 @@ const AdminRegisterProvider = ({ children }) => {
       select: [...OptionComponent],
     }
 
-    createProduct(body).then(res => console.log(res))
+    createProduct(body).then(res => {
+      if (res.status === 200) {
+        setOpenModal(true)
+        setRequiredInput(false)
+      } else if (res.response.status === 400) {
+        setRequiredInput(true)
+      }
+    })
   }
+  useEffect(() => {
+    const toastTimer = setTimeout(() => {
+      setOpenModal(false)
+    }, 3000)
+    return () => clearTimeout(toastTimer)
+  }, [openModal])
   return (
     <AdminRegisterContext.Provider
       value={{
@@ -49,6 +63,8 @@ const AdminRegisterProvider = ({ children }) => {
         setUploadedImages,
         uploadedImages,
         setShippingData,
+        openModal,
+        requiredInput,
       }}
     >
       {children}
