@@ -2,7 +2,7 @@ import styled from 'styled-components'
 export const PaymentContainerWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px auto;
+  margin: 15px auto;
   align-items: center;
   justify-content: center;
   position: relative;
