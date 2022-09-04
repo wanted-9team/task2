@@ -111,7 +111,7 @@ const FruitStoreDetail = () => {
       <S.DetailTabWrapper>
         <S.DetailTab to="#tab_detail">상세정보</S.DetailTab>
         <S.DetailTab to="#tab_review">구매평(0)</S.DetailTab>
-        <S.DetailTab to="#tab_qna">Q&A(0)</S.DetailTab>
+        <S.DetailTab to="#tab_qna">Q & A(0)</S.DetailTab>
       </S.DetailTabWrapper>
     </S.MainWrapper>
   )

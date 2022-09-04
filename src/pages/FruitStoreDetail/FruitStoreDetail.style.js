@@ -175,4 +175,3 @@ export const DetailTab = styled(Link)`
   border-right: 1px solid #ddd;
 `
 
-// export const TextMidWrapper = styled.div``
