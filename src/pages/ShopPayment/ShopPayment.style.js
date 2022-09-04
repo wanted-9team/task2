@@ -7,6 +7,7 @@ export const PaymentContainerWrapper = styled.div`
   justify-content: center;
   position: relative;
   width: 80%;
+  max-width: 1200px;
   height: auto;
 `
 

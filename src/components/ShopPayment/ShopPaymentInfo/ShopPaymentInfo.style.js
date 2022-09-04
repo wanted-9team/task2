@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 export const PaymentInfoContainerWrapper = styled.div`
   width: 70%;
   border-radius: 10px;
