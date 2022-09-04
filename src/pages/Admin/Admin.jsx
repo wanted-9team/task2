@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AdminRegisterContext } from '../../components/Admin/AdminRegister/AdminRegisterProvider'
+
 import * as S from './Admin.style'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
@@ -13,6 +15,8 @@ const Admin = () => {
   const goRegisterPage = () => {
     navigate('/admin_register')
   }
+  const { handleSubmitData } = useContext(AdminRegisterContext)
+
   return (
     <S.AdminMainPage>
       {location.pathname === '/admin_register' ? (
@@ -20,7 +24,7 @@ const Admin = () => {
           <S.AdminTitle>상품등록</S.AdminTitle>
           <S.AdminLinkContainer>
             <S.AdminLinkButton onClick={goAdminList}>상품목록</S.AdminLinkButton>
-            <S.AdminLinkButton>등록하기</S.AdminLinkButton>
+            <S.AdminLinkButton onClick={handleSubmitData}>등록하기</S.AdminLinkButton>
           </S.AdminLinkContainer>
         </S.AdminPageHeader>
       ) : (

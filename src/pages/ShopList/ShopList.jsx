@@ -1,7 +1,6 @@
 import React from 'react'
 import * as S from './ShopList.style'
-import ShopPaymentList from '../../components/ShopPayment/ShopPaymentList.jsx'
-
+import ShopPaymentList from '../../components/ShopPayment/ShopList/ShopPaymentList'
 const ShopList = () => {
   return <ShopPaymentList />
 }
