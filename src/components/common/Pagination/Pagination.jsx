@@ -2,22 +2,25 @@ import React from 'react'
 import { useState } from 'react'
 import * as S from './Pagination.style'
 
-const Pagination = ({ total, limit, activedPage, setActivedPage }) => {
+const Pagination = ({ total, limit, activedPage, setActivedPage, getDatas }) => {
   const [startPage, setStartPage] = useState(1)
   const lastPage = Math.ceil(total / limit)
 
   const onClickPage = ({ target }) => {
     setActivedPage(Number(target.id))
+    getDatas(Number(target.id))
   }
   const onClickPrev = () => {
     if (startPage === 1) return
     setStartPage(prev => prev - limit)
     setActivedPage(startPage - limit)
+    getDatas(activedPage)
   }
   const onClickNext = () => {
     if (startPage + limit > lastPage) return
     setStartPage(prev => prev + limit)
     setActivedPage(startPage + limit)
+    getDatas(activedPage)
   }
 
   return (

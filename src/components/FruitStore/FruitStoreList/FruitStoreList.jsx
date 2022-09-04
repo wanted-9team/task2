@@ -1,43 +1,47 @@
 import React, { useEffect, useState } from 'react'
 import FruitStoreItem from '../FruitStoreItem/FruitStoreItem'
 import * as S from './FruitStoreList.style'
-import axios from 'axios'
 import Pagination from '../../common/Pagination/Pagination'
+import useProductApi from '../../../utils/useProductApi'
 
 const FruitStoreList = () => {
   const [data, setData] = useState([])
+  const [total, setTotal] = useState(0)
   const [activedPage, setActivedPage] = useState(1)
   const limit = 10
-  const offset = (activedPage - 1) * limit
 
-  const getDatas = async () => {
-    await axios.get('data/data.json').then(res => {
-      setData(res.data)
+  const { getProducts } = useProductApi()
+
+  const getDatas = page => {
+    getProducts(page).then(res => {
+      setData(res.data.list)
+      setTotal(res.data.totalResults)
     })
   }
 
   useEffect(() => {
-    getDatas()
+    getDatas(1)
   }, [])
 
   return (
     <>
       <S.Title>
-        FRUITTE STORE <S.TitleStrong> {data.length}</S.TitleStrong>
+        FRUITTE STORE <S.TitleStrong> {total}</S.TitleStrong>
       </S.Title>
 
       <S.GridWrapper>
-        {data?.slice(offset, offset + limit).map((item, idx) => {
+        {data?.map((item, idx) => {
           return <FruitStoreItem key={idx} item={item} />
         })}
       </S.GridWrapper>
 
       <S.PaginationWrapper>
         <Pagination
-          total={data.length}
+          total={total}
           limit={limit}
           activedPage={activedPage}
           setActivedPage={setActivedPage}
+          getDatas={getDatas}
         />
       </S.PaginationWrapper>
     </>
