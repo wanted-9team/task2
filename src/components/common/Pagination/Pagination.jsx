@@ -6,9 +6,9 @@ const Pagination = ({ total, getDatas }) => {
   const [startPage, setStartPage] = useState(1)
   const [activedPage, setActivedPage] = useState(1)
 
-  const BLOCK_NUM = useRef(5).current
-  const ITEM_PER_PAGE = useRef(10).current
-  const PAGE_LENGTH = Math.ceil(total / ITEM_PER_PAGE)
+  const blockNum = useRef(5).current
+  const itemPerPage = useRef(10).current
+  const pageLength = Math.ceil(total / itemPerPage)
 
   const onClickPage = ({ target }) => {
     setActivedPage(Number(target.id))
@@ -17,16 +17,16 @@ const Pagination = ({ total, getDatas }) => {
 
   const onClickPrev = () => {
     if (startPage === 1) return
-    setStartPage(prev => prev - BLOCK_NUM)
-    getDatas(startPage - BLOCK_NUM)
-    setActivedPage(startPage - BLOCK_NUM)
+    setStartPage(prev => prev - blockNum)
+    getDatas(startPage - blockNum)
+    setActivedPage(startPage - blockNum)
   }
 
   const onClickNext = () => {
-    if (startPage + ITEM_PER_PAGE > PAGE_LENGTH) return
-    setStartPage(prev => prev + BLOCK_NUM)
-    getDatas(startPage + BLOCK_NUM)
-    setActivedPage(startPage + BLOCK_NUM)
+    if (startPage + itemPerPage > pageLength) return
+    setStartPage(prev => prev + blockNum)
+    getDatas(startPage + blockNum)
+    setActivedPage(startPage + blockNum)
   }
 
   return (
@@ -34,9 +34,9 @@ const Pagination = ({ total, getDatas }) => {
       <S.PageButton disabled={startPage === 1} onClick={onClickPrev}>
         &lt;
       </S.PageButton>
-      {new Array(BLOCK_NUM).fill(1).map((_, idx) => {
+      {new Array(blockNum).fill(1).map((_, idx) => {
         return (
-          idx + startPage <= PAGE_LENGTH && (
+          idx + startPage <= pageLength && (
             <S.PageButton
               id={String(idx + startPage)}
               onClick={onClickPage}
@@ -48,7 +48,7 @@ const Pagination = ({ total, getDatas }) => {
           )
         )
       })}
-      <S.PageButton disabled={startPage + ITEM_PER_PAGE > PAGE_LENGTH} onClick={onClickNext}>
+      <S.PageButton disabled={startPage + itemPerPage > pageLength} onClick={onClickNext}>
         &gt;
       </S.PageButton>
     </S.PaginationWrapper>
