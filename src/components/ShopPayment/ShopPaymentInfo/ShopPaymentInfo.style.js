@@ -84,32 +84,9 @@ export const CustomerInfoInput = styled.input`
   margin-bottom: 15px;
 `
 
-export const ShippingInfoHeader = styled.div`
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 20px;
-`
-
-export const ShippingInfo = styled.form``
-
-export const ShippingDeliveryBody = styled.div`
-  width: 90%;
-`
-
-export const ShippingDeliveryGetInfo = styled.div``
-
-export const ShippingDeliveryInfoList = styled.ol``
-
-export const ShippingDeliveryInfoEachContainer = styled.li``
+export const ShippingDeliveryInfoEachContainer = styled.div``
 
 export const ShippingDeliveryInfoLabel = styled.label``
-
-export const ShippingDeliveryInfoCheckLabel = styled.label``
-
-export const ShippingDeliveryInfoCheckInput = styled.input`
-  margin-bottom: 15px;
-  /* display: none; */
-`
 
 export const ShippingDeliveryInfoInput = styled.input`
   width: 100%;

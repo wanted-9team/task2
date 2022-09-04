@@ -13,7 +13,7 @@ export const PaymentContainerWrapper = styled.div`
 
 export const PaymentContainerHeader = styled.div`
   width: 100%;
-  margin: 30px;
+  margin: 100px;
   border-bottom: 1px solid grey;
   border-collapse: collapse;
   vertical-align: bottom;
