@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react'
+import React, { useEffect, useState, useCallback, useRef, useContext } from 'react'
 import * as S from './AdminRegister.style'
 import AdminTextInputField from './AdminInput/AdminTextInputField'
 import AdminOptionBox from './AdminOption/AdminOptionBox'
 import ImageUploadBox from './AdminImageUpload/ImageUploadBox'
 import AdminCheckBox from './AdminInput/AdminCheckBox'
 import ShippingInputField from './AdminInput/ShippingInputField'
-import useProductApi from '../../../utils/useProductApi'
+
+import { AdminRegisterContext } from './AdminRegisterProvider'
 const STATUSDATA = [
   { id: 1, type: 'SALE' },
   { id: 2, type: 'BEST' },
@@ -16,27 +17,22 @@ const STATUSDATA = [
   { id: 7, type: '특가' },
   { id: 8, type: '판매대기' },
 ]
-const initialDataType = {
-  name: '',
-  imageUrl: [],
-  quantity: 0,
-  price: 0,
-  sale: 0,
-  description: [],
-  origin: '',
-  shipping: {},
-  visible: true,
-}
 
 const AdminRegister = () => {
-  const [productData, setProductData] = useState(initialDataType)
-  const [OptionComponent, setOptionComponent] = useState([])
-  const [statusData, setStatusData] = useState([])
-  const [shippingFreeCheck, setShippingFreeCheck] = useState(false)
-  const [uploadedImages, setUploadedImages] = useState([])
-  const [shippingData, setShippingData] = useState({ option: '', price: 0, info: '' })
   const shippingInputRef = useRef(null)
-  const { createProduct } = useProductApi()
+  const {
+    setProductData,
+    setOptionComponent,
+    setStatusData,
+    statusData,
+    setShippingFreeCheck,
+    setUploadedImages,
+    uploadedImages,
+    setShippingData,
+    shippingFreeCheck,
+    OptionComponent,
+  } = useContext(AdminRegisterContext)
+
   useEffect(() => {
     if (shippingFreeCheck) {
       shippingInputRef.current.value = 0
@@ -46,28 +42,20 @@ const AdminRegister = () => {
 
   const handleAddOptionClick = useCallback(() => {
     setOptionComponent(prev => [...prev, { option: '', price: '' }])
-  }, [])
+  }, [setOptionComponent])
 
-  const handleDescChange = useCallback(({ target }) => {
-    const { value } = target
-    const description = value.split('\n')
-    setProductData(prev => ({ ...prev, description }))
-  }, [])
+  const handleDescChange = useCallback(
+    ({ target }) => {
+      const { value } = target
+      const description = value.split('\n')
+      setProductData(prev => ({ ...prev, description }))
+    },
+    [setProductData],
+  )
 
   const handleShippingCheck = useCallback(() => {
     setShippingFreeCheck(prev => !prev)
-  }, [])
-
-  const handleSubmitData = useCallback(async () => {
-    const body = {
-      ...productData,
-      imageUrl: [...uploadedImages],
-      status: [...statusData],
-      shipping: shippingData,
-      select: [...OptionComponent],
-    }
-    createProduct(body).then(res => console.log(res))
-  }, [productData, uploadedImages, statusData, shippingData, OptionComponent, createProduct])
+  }, [setShippingFreeCheck])
 
   return (
     <S.RegisterContaiDiv>
@@ -180,7 +168,6 @@ const AdminRegister = () => {
           ))}
         </S.StatusBox>
       </S.BoxDiv>
-      <button onClick={handleSubmitData}>등록</button>
     </S.RegisterContaiDiv>
   )
 }
