@@ -53,9 +53,6 @@ export const Label = styled.label`
           h3 {
             font-weight: 400;
           }
-          .shippingFree {
-            justify-content: center;
-          }
         `
       case 'shippingFree':
         return css`
@@ -87,6 +84,7 @@ export const TextInput = styled.input`
   height: 42px;
   border-radius: 4px;
   border: 1px solid #a1a1a1;
+  padding: 10px;
   &[type='checkbox'] {
     height: auto;
   }

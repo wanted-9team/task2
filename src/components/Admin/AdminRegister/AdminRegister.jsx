@@ -3,7 +3,8 @@ import * as S from './AdminRegister.style'
 import InputField from './AdminInputField'
 import AdminOption from './AdminOption'
 import ImageUploadBox from './ImageUploadBox'
-const statusDataArr = [
+import { createProduct, getProduct } from '../../../api'
+const STATUSDATA = [
   { id: 1, type: 'SALE' },
   { id: 2, type: 'BEST' },
   { id: 3, type: 'MD' },
@@ -46,22 +47,31 @@ const AdminRegister = () => {
   }, [shippingFreeCheck])
 
   const handleAddOptionClick = useCallback(() => {
-    let countArr = [...createOptionDiv]
-    let counter = countArr.slice(-1)[0]
-    counter += 1
-    countArr.push(counter)
-    setCreateOptionDiv(countArr)
-  }, [createOptionDiv])
+    // let countArr = [...createOptionDiv]
+    // let counter = countArr.slice(-1)[0]
+    // console.log(counter)
+    // counter += 1
+    // countArr.push(counter)
+    setCreateOptionDiv(prev => [...prev, optionData])
+  }, [optionData])
 
-  const handleShippingCheck = () => {
+  const handleDescChange = useCallback(({ target }) => {
+    const { value } = target
+    const description = value.split('\n')
+    setProductData(prev => ({ ...prev, description }))
+  }, [])
+  const handleShippingCheck = useCallback(() => {
     setShippingFreeCheck(prev => !prev)
-  }
-
+  }, [])
+  const handleSubmitData = useCallback(async () => {
+    const res = await createProduct(productData)
+    const data = await getProduct()
+  }, [productData])
   return (
     <S.RegisterContaiDiv>
       <S.BoxDiv>
         <InputField setProductData={setProductData} label="상품명" id="name" type="text" />
-        <InputField setProductData={setProductData} label="가격" id="price" type="number" />
+        <InputField setProductData={setProductData} label="가격" id="price" type="number" min="1" />
         <S.HalfBox>
           <InputField
             setProductData={setProductData}
@@ -69,6 +79,7 @@ const AdminRegister = () => {
             id="quantity"
             type="number"
             attr="half"
+            min="1"
           />
           <InputField
             setProductData={setProductData}
@@ -76,15 +87,20 @@ const AdminRegister = () => {
             id="sale"
             type="number"
             attr="half"
+            max="100"
           />
         </S.HalfBox>
-        <InputField
+        <S.Label htmlFor="description">
+          <S.LabelText>상세설명</S.LabelText>
+          <S.TextArea id="description" type="text" onChange={handleDescChange}></S.TextArea>
+        </S.Label>
+        {/* <InputField
           setProductData={setProductData}
           label="상세설명"
           id="description"
           type="text"
           textArea={true}
-        />
+        /> */}
 
         <S.Label>
           <S.LabelText> 상품 옵션</S.LabelText>
@@ -136,7 +152,7 @@ const AdminRegister = () => {
         />
         <S.LabelText>상태</S.LabelText>
         <S.StatusBox>
-          {statusDataArr.map(sts => (
+          {STATUSDATA.map(sts => (
             <InputField
               setStatusData={setStatusData}
               statusData={statusData}
@@ -149,6 +165,7 @@ const AdminRegister = () => {
           ))}
         </S.StatusBox>
       </S.BoxDiv>
+      <button onClick={handleSubmitData}>등록</button>
     </S.RegisterContaiDiv>
   )
 }

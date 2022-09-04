@@ -7,6 +7,7 @@ const ImageUploadBox = ({ max = 5 }) => {
   const [previewImages, setPreviewImages] = useState([])
   const uploadBoxRef = useRef()
   const inputRef = useRef()
+
   useEffect(() => {
     const uploadBox = uploadBoxRef.current
     const input = inputRef.current
@@ -67,7 +68,7 @@ const ImageUploadBox = ({ max = 5 }) => {
     setPreviewImages(imageJSXs)
   }, [uploadedImages])
   return (
-    <div>
+    <>
       <S.Label className="drag_or_click" htmlFor="ida" ref={uploadBoxRef}>
         <S.LabelText>상품 이미지</S.LabelText>
         <S.ImgBoxWrapper className="ImgBoxWrapper">
@@ -88,7 +89,7 @@ const ImageUploadBox = ({ max = 5 }) => {
       <S.PreviewWapper>
         <S.PreviewContainer>{previewImages}</S.PreviewContainer>
       </S.PreviewWapper>
-    </div>
+    </>
   )
 }
 

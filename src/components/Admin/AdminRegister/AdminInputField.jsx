@@ -6,22 +6,19 @@ const InputField = ({
   id,
   type,
   attr,
-  textArea,
   setProductData,
   setOptionData,
   setStatusData,
   statusData,
   shippingFreeCheck,
+  max,
+  min,
 }) => {
   const handleChange = useCallback(
-    e => {
-      const { id, value } = e.target
+    ({ target }) => {
+      const { id, value } = target
 
-      if (id === 'description') {
-        const desInput = e.target.value
-        const description = desInput.split('\n')
-        setProductData(prev => ({ ...prev, description }))
-      } else if (id === 'optionName') {
+      if (id === 'optionName') {
         setOptionData(prev => ({ ...prev, option: value }))
       } else if (id === 'optionPrice') {
         setOptionData(prev => ({ ...prev, price: value }))
@@ -50,11 +47,14 @@ const InputField = ({
   return (
     <S.Label htmlFor={id} attr={attr}>
       <S.LabelText>{label}</S.LabelText>
-      {textArea ? (
-        <S.TextArea id={id} type={type} onChange={handleChange} />
-      ) : (
-        <S.TextInput id={id} type={type} onChange={handleChange} disabled={shippingFreeCheck} />
-      )}
+      <S.TextInput
+        id={id}
+        type={type}
+        onChange={handleChange}
+        disabled={shippingFreeCheck}
+        max={max}
+        min={min}
+      />
     </S.Label>
   )
 }

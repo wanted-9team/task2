@@ -8,6 +8,7 @@ export const handlers = [
     for (let i = 0; i < data.length; i += 10) {
       result.push(data.slice(i, i + 10))
     }
+
     const returnPageData = result[Number(page) - 1]
     return res(
       ctx.status(200),

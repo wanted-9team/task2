@@ -6,7 +6,10 @@ const AdminOption = ({ setOptionData }) => {
   return (
     <S.OptionBoxDiv>
       <S.OptionHeader>
-        <S.Label>필수</S.Label>
+        <S.Label attr={'checkbox'}>
+          <S.TextInput type="checkbox" />
+          <S.LabelText>필수</S.LabelText>
+        </S.Label>
         <AiOutlineClose />
       </S.OptionHeader>
       <S.HalfBox>
@@ -23,6 +26,7 @@ const AdminOption = ({ setOptionData }) => {
           type="number"
           attr="option"
           setOptionData={setOptionData}
+          min="1"
         />
       </S.HalfBox>
     </S.OptionBoxDiv>
