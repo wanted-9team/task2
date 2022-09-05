@@ -6,7 +6,7 @@ const ShopList = () => {
   return (
     <>
       <S.MainContainer>
-        <BiCheckCircle />
+        <BiCheckCircle size="120px" />
         <S.MessageTitle>주문이 완료되었습니다.</S.MessageTitle>
         <S.OrderDetailContainer>
           <S.OrderDetailTitle>
