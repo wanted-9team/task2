@@ -4,7 +4,6 @@ import { getFormattedPrice } from '../../../utils/getPrice'
 import Post from '../DaumPostCode/Post'
 import { BsSearch } from 'react-icons/bs'
 import OrderSummary from './../OrderSummary/OrderSummary'
-import { getShopItemNumbers, getShopItemPrices } from '../../../utils/getShopItemNumbersAndPrices'
 
 const ShopPaymentInfo = ({ orderInfo, setOrderInfo }) => {
   const [visible, setVisible] = useState(false)

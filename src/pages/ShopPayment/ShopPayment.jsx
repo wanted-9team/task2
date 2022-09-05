@@ -5,37 +5,7 @@ import { getOrderNumber } from '../../utils/getOrderNumber'
 import { ShopInfoContextStore } from './../../store/ShopInfoContext'
 import getShopItemInfoSelect from '../../utils/getShopItemInfoSelect'
 const ShopPayment = () => {
-  // const { shopItemInfo } = useContext(ShopInfoContextStore)
-  let shopItemInfo = [
-    {
-      name: '수박',
-      price: '300000',
-      select: { option: '1kg', price: '3000' },
-      imageUrl: '',
-      shipping: {
-        option: '택배',
-        price: 4560,
-        info: '도서산간 배송비 추가',
-      },
-      id: '',
-      sale: '',
-      selectQuantity: '99',
-    },
-    {
-      name: '수박',
-      price: '300000',
-      select: { option: '1kg', price: '3000' },
-      imageUrl: '',
-      shipping: {
-        option: '택배',
-        price: 4560,
-        info: '도서산간 배송비 추가',
-      },
-      id: '',
-      sale: '',
-      selectQuantity: '99',
-    },
-  ]
+  const { shopItemInfo } = useContext(ShopInfoContextStore)
 
   let shopItemInfoSelect = getShopItemInfoSelect(shopItemInfo)
 

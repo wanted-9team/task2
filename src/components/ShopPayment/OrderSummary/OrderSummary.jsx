@@ -4,7 +4,7 @@ import axios from 'axios'
 import { getFormattedPrice } from '../../../utils/getPrice'
 import { useNavigate } from 'react-router-dom'
 
-function OrderSummary({ orderInfo, TotalPrices, TotalNumbers }) {
+function OrderSummary({ orderInfo }) {
   const navigate = useNavigate()
   const onClickHandler = async e => {
     await axios.post('/orderlist', JSON.stringify(orderInfo))
