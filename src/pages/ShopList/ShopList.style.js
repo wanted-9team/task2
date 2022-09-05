@@ -76,9 +76,8 @@ export const Product = styled.div`
 
   flex-direction: row;
   justify-content: space-evenly;
-  width: 100%;
+
   padding: 20px;
-  
   box-sizing: border-box;
 
   width: 800px;
@@ -225,8 +224,6 @@ export const Value = styled.h4`
 export const BacktoShoppingButton = styled.button`
   width: 199px;
   height: 49px;
-  left: 621px;
-  top: 2065px;
 
   background: #333333;
   border-radius: 4px;
