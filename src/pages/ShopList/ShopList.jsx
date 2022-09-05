@@ -1,5 +1,3 @@
-import React from 'react'
-import * as S from './ShopList.style'
 import useProductApi from '../../utils/useProductApi'
 import { BiCheckCircle } from 'react-icons/bi'
 

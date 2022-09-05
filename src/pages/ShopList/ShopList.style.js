@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { IconName } from 'react-icons/fi'
 
 export const MainContainer = styled.div`
   display: flex;
@@ -23,6 +22,7 @@ export const MessageTitle = styled.h2`
   font-weight: 700;
   font-size: 42px;
   line-height: 51px;
+
   margin: 50px;
 `
 
@@ -78,7 +78,7 @@ export const Product = styled.div`
   justify-content: space-evenly;
   width: 100%;
   padding: 20px;
-
+  
   box-sizing: border-box;
 
   width: 800px;
