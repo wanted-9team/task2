@@ -58,30 +58,6 @@ export const PaymentOrderQuantity = styled.div`
   justify-content: space-around;
 `
 
-export const Minus = styled.div`
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(#000, #000), linear-gradient(#000, #000);
-  background-position: center;
-  background-size: 40% 2px;
-  background-repeat: no-repeat;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0 10px;
-`
-
-export const MinusNoClick = styled(Minus)`
-  opacity: 0.15;
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  cursor: default;
-`
-
-export const Plus = styled(Minus)`
-  background-size: 40% 2px, 2px 40%;
-`
-
 export const PaymentOrderItemPrice = styled.div`
   text-decoration: line-through;
 `
