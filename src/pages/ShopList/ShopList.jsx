@@ -1,7 +1,7 @@
-import useProductApi from '../../utils/useProductApi'
 import { BiCheckCircle } from 'react-icons/bi'
 import * as S from './ShopList.style'
 import { useNavigate } from 'react-router-dom'
+import { getFormattedPrice } from '../../utils/getPrice'
 
 const ShopList = () => {
   const navigate = useNavigate()
@@ -34,7 +34,7 @@ const ShopList = () => {
                     <S.OptionDetail>쇼핑백 - 1개</S.OptionDetail>
                   </S.OrderOption>
                 </S.OrderProductDescription>
-                <S.OrderProductPrice>36000원</S.OrderProductPrice>
+                <S.OrderProductPrice>{getFormattedPrice(36000)}원</S.OrderProductPrice>
               </S.OrderProductBodyContainer>
             </S.Product>
             <S.OrderDetailButton>더보기</S.OrderDetailButton>
@@ -47,15 +47,15 @@ const ShopList = () => {
           <S.PaymentInfo>
             <S.DetailLine>
               <S.Type>총 결제금액</S.Type>
-              <S.Value $option="totalPrice">18700원</S.Value>
+              <S.Value $option="totalPrice">{getFormattedPrice(18700)}원</S.Value>
             </S.DetailLine>
             <S.DetailLine>
               <S.Type>총 상품가격</S.Type>
-              <S.Value>15200원</S.Value>
+              <S.Value>{getFormattedPrice(15200)}원</S.Value>
             </S.DetailLine>
             <S.DetailLine>
               <S.Type>배송비</S.Type>
-              <S.Value>3500원</S.Value>
+              <S.Value>{getFormattedPrice(3500)}원</S.Value>
             </S.DetailLine>
           </S.PaymentInfo>
         </S.OrderDetailContainer>
