@@ -9,6 +9,7 @@ import FruitStore from './pages/FruitStore/FruitStore'
 import FruitStoreDetail from './pages/FruitStoreDetail/FruitStoreDetail'
 import ShopList from './pages/ShopList/ShopList'
 import ShopPayment from './pages/ShopPayment/ShopPayment'
+import NotFound from './components/common/NotFound/NotFound'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/admin_shop/:id" element={<AdminShop />} />
           <Route path="/admin_register" element={<AdminRegister />} />
         </Route>
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       <Footer />
     </BrowserRouter>
