@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { IconName } from 'react-icons/fi'
 
 export const MainContainer = styled.div`
   display: flex;
@@ -8,7 +7,7 @@ export const MainContainer = styled.div`
   align-items: center;
   max-width: 800px;
   width: 100%;
-  margin: 100px auto;
+  margin: auto;
   @media screen and (max-width: 768px) {
     max-width: 700px;
   }
@@ -17,13 +16,11 @@ export const MainContainer = styled.div`
 export const MessageTitle = styled.h2`
   width: 409px;
   height: 51px;
-
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 42px;
   line-height: 51px;
-  margin: 50px;
 `
 
 export const OrderDetailContainer = styled.div`
@@ -43,7 +40,6 @@ export const OrderDetailTitle = styled.div`
 export const TitleLeft = styled.h3`
   width: 246px;
   height: 39px;
-
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
@@ -54,7 +50,6 @@ export const TitleLeft = styled.h3`
 export const TitleRight = styled.p`
   width: 205px;
   height: 17px;
-
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
@@ -73,17 +68,13 @@ export const ProductContainer = styled.div`
 export const Product = styled.div`
   border: solid 1px;
   display: flex;
-
   flex-direction: row;
   justify-content: space-evenly;
   width: 100%;
   padding: 20px;
-
   box-sizing: border-box;
-
   width: 800px;
   height: 218px;
-
   background: #ffffff;
   border: 1px solid #a1a1a1;
   border-radius: 8px;
@@ -92,10 +83,8 @@ export const Product = styled.div`
 export const OrderProductImg = styled.img`
   flex-grow: 2;
   margin: 15px;
-
   width: 155px;
   height: 155.89px;
-
   background: #cccccc;
   border-radius: 8px;
 `
@@ -112,7 +101,6 @@ export const OrderProductBodyContainer = styled.div`
 export const OrderProductName = styled.h3`
   width: 394px;
   height: 22px;
-
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
@@ -132,10 +120,8 @@ export const OrderOption = styled.div`
 
 export const OptionBox = styled.div`
   margin-right: 3px;
-
   text-align: center;
   align-items: center;
-
   width: 49px;
   height: 26px;
   border: 1px solid #a1a1a1;
@@ -147,7 +133,6 @@ export const OptionDetail = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-
   color: #666666;
 `
 
@@ -162,10 +147,8 @@ export const OrderProductPrice = styled.h4`
 export const OrderDetailButton = styled.button`
   width: 199px;
   height: 49px;
-
   background: #f5f5f5;
   border-radius: 4px;
-
   margin: 10px;
 `
 
@@ -176,10 +159,8 @@ export const PaymentInfo = styled.div`
   justify-content: space-between;
   width: 798px;
   height: 157px;
-
   border: 1px solid #a1a1a1;
   border-radius: 8px;
-
   padding: 10px;
   margin: 20px;
 `
@@ -208,7 +189,6 @@ export const Value = styled.h4`
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
-
   ${props => {
     switch (props.$option) {
       case 'totalPrice':
@@ -227,7 +207,6 @@ export const BacktoShoppingButton = styled.button`
   height: 49px;
   left: 621px;
   top: 2065px;
-
   background: #333333;
   border-radius: 4px;
   color: #ffffff;
