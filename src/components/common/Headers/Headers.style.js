@@ -40,6 +40,22 @@ export const Nav = styled.nav`
   justify-content: space-between;
 `
 
+export const ShopListLink = styled(Link)`
+  margin-right: 14px;
+  padding: 20px;
+  display: block;
+  font-size: 18px;
+  color: #111;
+  font-weight: 700;
+  :hover {
+    color: #5f9a3f;
+  }
+  @media screen and (max-width: 414px) {
+    padding: 10px;
+    font-size: 16px;
+  }
+`
+
 export const StoreLink = styled(Link)`
   margin-right: 14px;
   padding: 20px;
