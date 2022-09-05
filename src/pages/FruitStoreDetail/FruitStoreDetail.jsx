@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import * as S from './FruitStoreDetail.style'
 import { getFormattedPrice, getSalePrice } from '../../utils/getPrice'
-import axios from 'axios'
+import useProductApi from '../../utils/useProductApi'
 import { useNavigate } from 'react-router'
+import { ShopInfoContextStore } from '../../store/ShopInfoContext'
+import { IoIosCloseCircleOutline } from 'react-icons/io'
 
 const FruitStoreDetail = () => {
   const [data, setData] = useState({})
-  const [selectedOption, setSelectedOption] = useState('필수선택 (필수)')
   const [nowImage, setNowImage] = useState(0)
   const params = useParams()
+  const { shopItemInfo, setShopItemInfo } = useContext(ShopInfoContextStore)
+  const [item, setItem] = useState([])
+  const [toggle, setToggle] = useState('none')
 
-  const getDatas = async () => {
-    await axios.get('/data/data.json').then(res => {
-      res.data.forEach(oneData => {
+  const { getProducts } = useProductApi()
+
+  const getDatas = page => {
+    getProducts(page).then(res => {
+      res.data.list.forEach(oneData => {
         if (Number(params.id) === Number(oneData.id)) {
           setData(oneData)
         }
@@ -21,24 +27,128 @@ const FruitStoreDetail = () => {
     })
   }
 
-  const handleSelect = e => {
-    e && setSelectedOption(e.target.value)
+  const SelectOptions = () => {
+    return (
+      <S.OptionChoice>
+        <S.OptionChoiceText>필수선택*</S.OptionChoiceText>
+        <S.ItemOptionSelect onClick={toggleOption}>필수 옵션(필수)</S.ItemOptionSelect>
+        <S.ItemOptionLists style={{ display: toggle }}>
+          {data.select?.map(option => (
+            <S.ItemOptionList onClick={() => selectOption(option)} key={option.option}>
+              {option.option}
+              <S.ItemOptionPrice>{getFormattedPrice(option.price)}원</S.ItemOptionPrice>
+            </S.ItemOptionList>
+          ))}
+        </S.ItemOptionLists>
+      </S.OptionChoice>
+    )
   }
 
-  const imgMouseOver = e => {
-    e && console.log(e.target.value)
+  const toggleOption = () => {
+    toggle === 'none' ? setToggle('block') : setToggle('none')
+  }
+
+  const selectOption = option => {
+    if (item.every(eachItem => eachItem.select.option !== option.option)) {
+      setItem(() => [
+        ...item,
+        {
+          name: data.name,
+          price: data.price,
+          select: option,
+          imageUrl: data.imageUrl[0],
+          shipping: data.shipping,
+          id: data.id,
+          sale: data.sale,
+          selectQuantity: 1,
+        },
+      ])
+    } else {
+      alert('이미 해당 옵션이 있습니다.')
+    }
+  }
+  const itemCopy = item
+  const minusQuantity = option => {
+    itemCopy.forEach(eachItem => {
+      if (eachItem.select.option === option && eachItem.selectQuantity > 1) {
+        eachItem.selectQuantity -= 1
+        setItem(item => [...itemCopy])
+      }
+    })
+  }
+  const plusQuantity = option => {
+    itemCopy.forEach(eachItem => {
+      if (eachItem.select.option === option) {
+        eachItem.selectQuantity += 1
+        setItem(item => [...itemCopy])
+      }
+    })
+  }
+
+  const SelectLists = () => {
+    return (
+      <S.SelectList>
+        {item.length !== 0 ? (
+          item.map(list => (
+            <S.SelectOption key={item.id}>
+              <S.SelectOptionName>
+                {list.select.option}
+                <IoIosCloseCircleOutline onClick={() => onRemove(list.select.option)} />
+              </S.SelectOptionName>
+              <S.SelectOptionBtm>
+                <S.SelectQuantity>
+                  <S.BtnMinus onClick={() => minusQuantity(list.select.option)}>-</S.BtnMinus>
+                  <S.SelectQuantityInput value={list.selectQuantity} type="number" />
+                  <S.BtnPlus onClick={() => plusQuantity(list.select.option)}>+</S.BtnPlus>
+                </S.SelectQuantity>
+                <S.SelectOptionPrice>
+                  {getFormattedPrice(list.select.price * list.selectQuantity)}원
+                </S.SelectOptionPrice>
+              </S.SelectOptionBtm>
+            </S.SelectOption>
+          ))
+        ) : (
+          <S.SelectOption key={item.id}></S.SelectOption>
+        )}
+      </S.SelectList>
+    )
+  }
+
+  const Total = () => {
+    return item.length !== 0 ? (
+      <S.TotalQuantity>
+        총 상품금액(
+        {(item.length > 1 && item.reduce((a, b) => a.selectQuantity + b.selectQuantity)) ||
+          (item.length === 1 && item[0].selectQuantity)}
+        개)
+        <S.TotalPrice>
+          {(item.length > 1 &&
+            item.reduce((a, b) =>
+              getFormattedPrice(
+                a.select.price * a.selectQuantity + b.select.price * b.selectQuantity,
+              ),
+            )) ||
+            (item.length === 1 && getFormattedPrice(item[0].select.price * item[0].selectQuantity))}
+          원
+        </S.TotalPrice>
+      </S.TotalQuantity>
+    ) : (
+      <S.TotalQuantity></S.TotalQuantity>
+    )
+  }
+
+  const onRemove = option => {
+    setItem(item.filter(eachItem => eachItem.select.option !== option))
   }
 
   useEffect(() => {
-    getDatas()
-    handleSelect()
-    imgMouseOver()
+    getDatas(1)
   }, [])
 
   const navigate = useNavigate()
   const clickBuyBtn = () => {
-    selectedOption !== '필수선택 (필수)' || !selectedOption
-      ? navigate(`/shop_payment/?order_code=${params.id}`)
+    item.length >= 1
+      ? navigate(`/shop_payment`, { item: item })
       : alert('필수 옵션을 선택해주세요.')
   }
 
@@ -46,13 +156,12 @@ const FruitStoreDetail = () => {
     <S.MainWrapper>
       <S.TopWrapper>
         <S.Category>
-          {' '}
           Home > <S.CategoryLink to="/fruit_store">FRUITTE STORE</S.CategoryLink>
         </S.Category>
         <S.DetailWrapper>
           <S.ImageWrapper>
             <S.ImageSection>
-              <S.Image src={data.imageUrl ? data.imageUrl[nowImage] : console.log('')} />
+              <S.Image src={data.imageUrl && data.imageUrl[nowImage]} />
             </S.ImageSection>
             <S.ImageList>
               {data.imageUrl?.map(img => (
@@ -75,10 +184,8 @@ const FruitStoreDetail = () => {
                 ))}
               </S.Status>
               <S.Price>
-                {getFormattedPrice(data.price)}원
-                <S.SalePrice>
-                  {getFormattedPrice(getSalePrice(data.price, data.sale))}원
-                </S.SalePrice>
+                {getFormattedPrice(getSalePrice(data.price, data.sale))}원
+                <S.SalePrice>{getFormattedPrice(data.price)}원</S.SalePrice>
               </S.Price>
             </S.TextTopWrapper>
             <S.TextMidWrapper>
@@ -95,27 +202,22 @@ const FruitStoreDetail = () => {
                   배송 방법 <S.ListDescription>{data.shipping?.option}</S.ListDescription>
                 </S.List>
                 <S.List>
-                  배송비{' '}
+                  배송비
                   <S.ListDescription>
                     {getFormattedPrice(data.shipping?.price)}원 ({data.shipping?.info})
                   </S.ListDescription>
                 </S.List>
-                <S.ShippingSelect>
-                  <S.ShippingOption>배송비(선결제)</S.ShippingOption>
-                  <S.ShippingOption>배송비(착불)</S.ShippingOption>
-                </S.ShippingSelect>
+                {
+                  <S.ShippingSelect>
+                    <S.ShippingOption>배송비(선결제)</S.ShippingOption>
+                    <S.ShippingOption>배송비(착불)</S.ShippingOption>
+                  </S.ShippingSelect>
+                }
               </S.shipping>
-              <S.OptionChoice>
-                <S.OptionChoiceText>필수선택*</S.OptionChoiceText>
-                <S.Select onChange={handleSelect} value={selectedOption}>
-                  <S.Option style={{ display: 'none' }}>필수선택 (필수)</S.Option>
-                  {data.select?.map(option => (
-                    <S.Option value={option.option} key={option.option}>
-                      {option.option}
-                    </S.Option>
-                  ))}
-                </S.Select>
-              </S.OptionChoice>
+
+              <SelectOptions />
+              <SelectLists />
+              <Total />
               <S.TextBtmWrapper>
                 <S.BtnWrapper>
                   <S.BtnBuy onClick={clickBuyBtn}>구매하기</S.BtnBuy>

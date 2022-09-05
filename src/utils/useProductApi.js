@@ -16,11 +16,13 @@ const useProductApi = () => {
       console.log(e)
     }
   }
+
   const createProduct = async data => {
     try {
       return await axios.post('/createproduct', { data })
     } catch (e) {
       console.log(e)
+      return e
     }
   }
   return { getProducts, deleteProducts, createProduct }
