@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "react": "^18.2.0",
+    "react-daum-postcode": "^3.1.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
@@ -47,6 +48,10 @@
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.1",
+    "msw": "^0.46.1",
     "prettier": "^2.7.1"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
