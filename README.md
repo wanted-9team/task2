@@ -24,6 +24,10 @@
 
 - 주문결제 페이지
 
+  - 다음 주소 api를 이용해서 주소 창 구현
+  - 옵션에 따른 총 금액(배송비 포함)
+    ![](https://user-images.githubusercontent.com/69101321/188350901-c75b1b21-3825-42e2-be6c-e3651499e8c0.gif)
+
 - 주문내역 확인 페이지
 
 ![](https://user-images.githubusercontent.com/92101831/188348965-85f7f7db-74a8-43bd-9545-7cc719180d4d.gif)
@@ -41,7 +45,9 @@
 - 상품 등록 페이지
 
 ![Sep-05-2022 11-18-33](https://user-images.githubusercontent.com/85508157/188348989-c77da6e0-c137-4b21-809f-20b0d48f8cb4.gif)
+
 ![Sep-05-2022 11-18-46](https://user-images.githubusercontent.com/85508157/188349014-8f21a61d-434f-42fa-9e77-7eefbff2bbfc.gif)
+
 ![Sep-05-2022 11-18-51](https://user-images.githubusercontent.com/85508157/188349037-7bde3c5a-627e-4ad0-9a18-99fbf7dbb157.gif)
 
 - 기타라우팅 관련 페이지
@@ -114,8 +120,7 @@ $ npm start
 
 - &#9745; 스토어 상품 주문 내역확인 (주문 번호, 상품명, 주문 수량, 주문 옵션)
   > - 중복되는 스타일 처리
-  >   - [https://github.com/wanted-9team/task2/pull/18](https://github.com/wanted-9team/task2/pull/18)
-  >   - 덕우님께서 하신 것처럼 중복되는 스타일에 관하여 하나로 정리했어야했는데 시간관계상 처리하지 못했습니다.
+  >   - [https://github.com/wanted-9team/task2/pull/18](https://github.com/wanted-9team/task2/pull/18) 덕우님께서 하신 것처럼 중복되는 스타일에 관하여 하나로 정리했어야했는데 시간관계상 처리하지 못했습니다.
   >   - msw를 도입하였는데, 사용방법을 정확히 알지 못해 적용하지 못했습니다.
 
 <br/>
