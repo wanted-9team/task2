@@ -1,8 +1,14 @@
 import useProductApi from '../../utils/useProductApi'
 import { BiCheckCircle } from 'react-icons/bi'
 import * as S from './ShopList.style'
+import { useNavigate } from 'react-router-dom'
 
 const ShopList = () => {
+  const navigate = useNavigate()
+  const goShoppingPage = () => {
+    navigate('/fruit_store')
+  }
+
   return (
     <>
       <S.MainContainer>
@@ -72,7 +78,7 @@ const ShopList = () => {
             </S.DetailLine>
           </S.PaymentInfo>
         </S.OrderDetailContainer>
-        <S.BacktoShoppingButton>쇼핑 계속하기</S.BacktoShoppingButton>
+        <S.BacktoShoppingButton onClick={goShoppingPage}>쇼핑 계속하기</S.BacktoShoppingButton>
       </S.MainContainer>
     </>
   )
