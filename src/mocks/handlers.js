@@ -67,6 +67,6 @@ export const handlers = [
       return res(ctx.status(400), ctx.json({ message: 'No-Data' }))
     }
     orderData.push(body)
-    return res(ctx.status(201), ctx.json({ message: '등록되었습니다.' }))
+    return res(ctx.status(201), ctx.json(orderData))
   }),
 ]

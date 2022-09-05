@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import * as S from './ShopPayment.style'
 import ShopPaymentInfo from '../../components/ShopPayment/ShopPaymentInfo/ShopPaymentInfo'
-import OrderSummary from '../../components/ShopPayment/OrderSummary/OrderSummary'
 import { getOrderNumber } from '../../utils/getOrderNumber'
+import { ShopInfoContextStore } from './../../store/ShopInfoContext'
+import getShopItemInfoSelect from '../../utils/getShopItemInfoSelect'
+const ShopPayment = () => {
+  const { shopItemInfo } = useContext(ShopInfoContextStore)
 
-const ShopPayment = ({ item }) => {
+  let shopItemInfoSelect = getShopItemInfoSelect(shopItemInfo)
+
+  const shopItem = shopItemInfo[0]
   const newOrderNumber = getOrderNumber()
   const [orderInfo, setOrderInfo] = useState({
     email: '',
@@ -15,7 +20,6 @@ const ShopPayment = ({ item }) => {
     phone: '',
     select: '',
     totalPrice: '',
-    boughtNumber: 1,
     orderNumber: '',
     imageUrl: '',
     shipping: {
@@ -23,27 +27,23 @@ const ShopPayment = ({ item }) => {
       price: 0,
       info: '',
     },
-    origin: '',
     id: 0,
     sale: 0,
     address: '',
     detailAddress: '',
     fullAddress: '',
-    quantity: '',
   })
   useEffect(() => {
     const newOrderInfo = {
       ...orderInfo,
-      productName: item?.name,
-      price: item?.price,
-      select: item?.select,
-      imageUrl: item?.imageUrl,
-      shipping: item?.shipping,
-      origin: item?.origin,
-      id: item?.id,
-      sale: item?.sale,
+      productName: shopItem?.name,
+      price: shopItem?.price,
+      select: shopItemInfoSelect,
+      imageUrl: shopItem?.imageUrl,
+      shipping: shopItem?.shipping,
+      id: shopItem?.id,
+      sale: shopItem?.sale,
       orderNumber: newOrderNumber,
-      quantity: item?.quantity,
     }
     setOrderInfo(newOrderInfo)
   }, [])
@@ -52,8 +52,7 @@ const ShopPayment = ({ item }) => {
     <S.PaymentContainerWrapper>
       <S.PaymentContainerHeader>주문서</S.PaymentContainerHeader>
       <S.PaymentContainerBody>
-        <ShopPaymentInfo item={item} orderInfo={orderInfo} setOrderInfo={setOrderInfo} />
-        <OrderSummary item={item} orderInfo={orderInfo} setOrderInfo={setOrderInfo} />
+        <ShopPaymentInfo orderInfo={orderInfo} setOrderInfo={setOrderInfo} />
       </S.PaymentContainerBody>
     </S.PaymentContainerWrapper>
   )

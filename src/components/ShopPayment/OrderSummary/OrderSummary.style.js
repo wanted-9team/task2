@@ -54,7 +54,8 @@ export const OrderSummaryPriceTotalInfo = styled.div``
 
 export const OrderSummaryPriceTotalPrice = styled.div``
 
-export const OrderSummaryPurchaseBtn = styled.input`
+export const OrderSummaryPurchaseBtn = styled.button`
+  cursor: pointer;
   position: absolute;
   bottom: 10px;
   width: 90%;

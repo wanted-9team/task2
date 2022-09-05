@@ -1,7 +1,16 @@
 import React from 'react'
 import * as S from './OrderSummary.style'
+import axios from 'axios'
+import { getFormattedPrice } from '../../../utils/getPrice'
+import { useNavigate } from 'react-router-dom'
 
-function OrderSummary() {
+function OrderSummary({ orderInfo }) {
+  const navigate = useNavigate()
+  const onClickHandler = async e => {
+    await axios.post('/orderlist', JSON.stringify(orderInfo))
+    navigate('/shop_list')
+  }
+
   return (
     <S.OrderSummaryWrapper>
       <S.OrderSummaryHeader> 결제정보 </S.OrderSummaryHeader>
@@ -17,20 +26,19 @@ function OrderSummary() {
           </S.OrderSummaryTr>
           <S.OrderSummaryTr>
             <S.OrderSummaryTd align="left">배송비</S.OrderSummaryTd>
-            <S.OrderSummaryTd align="right"></S.OrderSummaryTd>
+            <S.OrderSummaryTd align="right">
+              {`${getFormattedPrice(orderInfo?.shipping.price)}`}
+            </S.OrderSummaryTd>
           </S.OrderSummaryTr>
         </S.OrderSummaryTbody>
       </S.OrderSummaryTable>
       <S.OrderSummaryPriceTotal>
-        <S.OrderSummaryPriceTotalInfo align="left">총 결제금액: </S.OrderSummaryPriceTotalInfo>
-        <S.OrderSummaryPriceTotalPrice align="right"></S.OrderSummaryPriceTotalPrice>
+        <S.OrderSummaryPriceTotalInfo align="left">총 결제금액</S.OrderSummaryPriceTotalInfo>
+        <S.OrderSummaryPriceTotalPrice align="right">{`${getFormattedPrice(
+          +orderInfo.shipping.price,
+        )}원`}</S.OrderSummaryPriceTotalPrice>
       </S.OrderSummaryPriceTotal>
-      <S.OrderSummaryPurchaseBtn
-        type="button"
-        value="결제하기"
-        id="purchase-btn"
-        form="delivery-form"
-      />
+      <S.OrderSummaryPurchaseBtn onClick={onClickHandler}>결제하기</S.OrderSummaryPurchaseBtn>
     </S.OrderSummaryWrapper>
   )
 }
