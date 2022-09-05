@@ -14,6 +14,7 @@ const FruitStoreDetail = () => {
   const { shopItemInfo, setShopItemInfo } = useContext(ShopInfoContextStore)
   const [item, setItem] = useState([])
   const [toggle, setToggle] = useState('none')
+  const [shipping, setShipping] = useState('배송비(선결제)')
 
   const { getProducts } = useProductApi()
 
@@ -49,6 +50,7 @@ const FruitStoreDetail = () => {
   }
 
   const selectOption = option => {
+    toggleOption()
     if (item.every(eachItem => eachItem.select.option !== option.option)) {
       setItem(() => [
         ...item,
@@ -57,7 +59,7 @@ const FruitStoreDetail = () => {
           price: data.price,
           select: option,
           imageUrl: data.imageUrl[0],
-          shipping: data.shipping,
+          shipping: data.shipping.price,
           id: data.id,
           sale: data.sale,
           selectQuantity: 1,
@@ -98,7 +100,7 @@ const FruitStoreDetail = () => {
               <S.SelectOptionBtm>
                 <S.SelectQuantity>
                   <S.BtnMinus onClick={() => minusQuantity(list.select.option)}>-</S.BtnMinus>
-                  <S.SelectQuantityInput value={list.selectQuantity} type="number" />
+                  <S.SelectQuantityInput defaultValue={list.selectQuantity} type="number" />
                   <S.BtnPlus onClick={() => plusQuantity(list.select.option)}>+</S.BtnPlus>
                 </S.SelectQuantity>
                 <S.SelectOptionPrice>
@@ -141,9 +143,24 @@ const FruitStoreDetail = () => {
     setItem(item.filter(eachItem => eachItem.select.option !== option))
   }
 
+  const shippingOnChange = e => {
+    setShipping(e.currentTarget.value)
+  }
+
+  const changeShipping = () => {
+    if (shipping === '배송비(착불)' && item.length !== 0) {
+      console.log(item[0].shipping)
+      // setItem(item => (item[0].shipping = 0))
+    }
+  }
+
   useEffect(() => {
     getDatas(1)
+    changeShipping()
   }, [])
+
+  console.log(shipping)
+  console.log(item)
 
   const navigate = useNavigate()
   const clickBuyBtn = () => {
@@ -156,7 +173,7 @@ const FruitStoreDetail = () => {
     <S.MainWrapper>
       <S.TopWrapper>
         <S.Category>
-          Home > <S.CategoryLink to="/fruit_store">FRUITTE STORE</S.CategoryLink>
+          Home &gt; <S.CategoryLink to="/fruit_store">FRUITTE STORE</S.CategoryLink>
         </S.Category>
         <S.DetailWrapper>
           <S.ImageWrapper>
@@ -208,7 +225,7 @@ const FruitStoreDetail = () => {
                   </S.ListDescription>
                 </S.List>
                 {
-                  <S.ShippingSelect>
+                  <S.ShippingSelect onChange={shippingOnChange} value={shipping}>
                     <S.ShippingOption>배송비(선결제)</S.ShippingOption>
                     <S.ShippingOption>배송비(착불)</S.ShippingOption>
                   </S.ShippingSelect>
